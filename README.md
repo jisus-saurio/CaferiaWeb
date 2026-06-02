@@ -1,4 +1,4 @@
-# Coffe Lawhore Grupo 6
+# Coffe Lawhore / Grupo 6
 
 ## ☕ Descripción
 
