@@ -76,33 +76,25 @@ nav.scrolled {
 .nav-logo {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 14px;
   text-decoration: none;
 }
 
-.nav-logo-icon {
-  /* Únete */
-  width: 36px;
-  height: 36px;
-  background: var(--green-deep);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--cream);
-  /* Pie de página */
+.nav-logo-img {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  display: block;
+  border-radius: 12px;
+  background: var(--cream);
+  padding: 6px;
+  box-shadow: 0 10px 25px rgba(58, 46, 40, 0.08);
   flex-shrink: 0;
-}
-
-.nav-logo-icon svg {
-  width: 20px;
-  height: 20px;
 }
 
 .nav-logo-text {
   font-family: var(--font-display);
   color: var(--text-dark);
-  /* Animaciones de scroll */
   font-size: 1rem;
   font-weight: 700;
   line-height: 1.1;
