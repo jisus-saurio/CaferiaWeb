@@ -29,3 +29,7 @@ El sitio usa una paleta cálida de café, crema y verdes suaves, y presenta un l
 - Mónica Daniela Ruiz Ramírez
 - Fabiola Alexandra Deleon Martinez
 - Jesús Stanley Arce Dueñas
+
+ ## 🎶 Figma
+
+ https://www.figma.com/design/zsdwVSNR61MZKh706KU6iy/Mockup-Cafeteria?node-id=0-1&t=HhfbSpUupg3y2JFf-1
