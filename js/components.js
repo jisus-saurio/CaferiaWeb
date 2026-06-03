@@ -17,7 +17,7 @@ class NavBar extends HTMLElement {
       { label: "Menú",     href: "/pages/menu.html",      key: "menu"     },
       { label: "Nosotros", href: "/index.html#nosotros",  key: "nosotros" },
       { label: "Contacto", href: "/index.html#contacto",  key: "contacto" },
-      { label: "Carrito",  href: "/index.html#Carrito",   key: "carrito"  },
+      { label: "Carrito",  href: "/pages/Cart.html",   key: "carrito"  },
     ];
 
     const liItems = links

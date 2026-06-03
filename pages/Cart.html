@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carrito — Coffe Lawhore</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/CSS/Cart.css">
+</head>
+<body>
+
+<!-- STEPPER -->
+<div class="stepper" id="stepper">
+  <div class="step active" id="st1">
+    <div class="step-num">1</div>
+    <span>Tu carrito</span>
+  </div>
+  <div class="step-line" id="line12"></div>
+  <div class="step" id="st2">
+    <div class="step-num">2</div>
+    <span>Envío</span>
+  </div>
+  <div class="step-line" id="line23"></div>
+  <div class="step" id="st3">
+    <div class="step-num">3</div>
+    <span>Pago</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     SCREEN 1 — CARRITO
+══════════════════════════════════════ -->
+<div class="screen active" id="screen1">
+  <div class="container">
+    <div class="screen-title">
+      <div class="screen-title-num">1</div>
+      Tu carrito
+    </div>
+
+    <div class="cart-box" id="cartItemsBox"></div>
+
+    <div class="totals">
+      <div class="totals-row">
+        <span>Subtotal</span>
+        <span class="totals-val" id="s1-subtotal">$0.00</span>
+      </div>
+      <div class="totals-row">
+        <span>Costo estimado de envío</span>
+        <span class="totals-val">$3.50</span>
+      </div>
+      <div class="totals-row total">
+        <span>TOTAL</span>
+        <span class="totals-val" id="s1-total">$0.00</span>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="btn-back" onclick="goBack()">← Regresar al catálogo</button>
+      <button class="btn-main" onclick="goScreen(2)">Continuar compra →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     SCREEN 2 — ENVÍO
+══════════════════════════════════════ -->
+<div class="screen" id="screen2">
+  <div class="container">
+    <div class="screen-title">
+      <div class="screen-title-num">2</div>
+      ¿A dónde enviamos tu orden?
+    </div>
+
+    <div class="two-col">
+      <div class="form-card">
+        <div class="country-row">
+          <span class="country-label">País</span>
+          <span class="country-val">El Salvador</span>
+        </div>
+        <div class="field-group">
+          <div class="field">
+            <label>Departamento <span class="req">*</span></label>
+            <select id="dpto">
+              <option value="">Selecciona</option>
+              <option>San Salvador</option><option>Santa Ana</option>
+              <option>San Miguel</option><option>La Libertad</option>
+              <option>Usulután</option><option>Sonsonate</option>
+              <option>Ahuachapán</option><option>Chalatenango</option>
+              <option>La Paz</option><option>Cuscatlán</option>
+              <option>La Unión</option><option>Morazán</option>
+              <option>Cabañas</option><option>San Vicente</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Municipio <span class="req">*</span></label>
+            <input type="text" id="municipio" placeholder="Ej. Soyapango">
+          </div>
+        </div>
+        <div class="field-group full" style="margin-bottom:14px">
+          <div class="field">
+            <label>Dirección de entrega <span class="req">*</span></label>
+            <input type="text" id="direccion" placeholder="Calle, colonia, número">
+          </div>
+        </div>
+        <div class="field-group full" style="margin-bottom:14px">
+          <div class="field">
+            <label>Punto de referencia</label>
+            <input type="text" id="referencia" placeholder="Frente al parque, cerca de…">
+          </div>
+        </div>
+        <div class="field-group">
+          <div class="field">
+            <label>Nombre <span class="req">*</span></label>
+            <input type="text" id="nombre" placeholder="Tu nombre">
+          </div>
+          <div class="field">
+            <label>Apellidos <span class="req">*</span></label>
+            <input type="text" id="apellidos" placeholder="Tus apellidos">
+          </div>
+        </div>
+        <div class="field-group full" style="margin-bottom:0">
+          <div class="field">
+            <label>Teléfono de contacto <span class="req">*</span></label>
+            <input type="tel" id="telefono" placeholder="7000-0000">
+          </div>
+        </div>
+        <p class="field-note" style="margin-top:16px">
+          📦 Las entregas son realizadas por encomiendas. Nos comunicaremos contigo sobre los detalles de tu envío.
+        </p>
+        <button class="btn-main" style="margin-top:20px;width:100%" onclick="validateShipping()">Continuar a pago →</button>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="summary-card" id="summaryS2"></div>
+    </div>
+
+    <div class="actions" style="margin-top:20px">
+      <button class="btn-back" onclick="goScreen(1)">← Regresar al carrito</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     SCREEN 3 — PAGO
+══════════════════════════════════════ -->
+<div class="screen" id="screen3">
+  <div class="container">
+    <div class="screen-title">
+      <div class="screen-title-num">3</div>
+      Métodos de pago
+    </div>
+
+    <div class="two-col">
+      <div class="form-card">
+        <div class="pay-toggle">
+          <button class="pay-tab active" id="tabCard" onclick="setPayTab('card')">Tarjeta</button>
+          <button class="pay-tab" id="tabCash" onclick="setPayTab('cash')">Efectivo</button>
+        </div>
+
+        <!-- Panel Tarjeta -->
+        <div class="pay-panel active" id="panelCard">
+          <div class="card-layout">
+            <div class="credit-card">
+              <div class="cc-chip"></div>
+              <div class="cc-number" id="ccDisplay">**** **** **** ****</div>
+              <div class="cc-row">
+                <div>
+                  <div class="cc-name" id="ccNameDisplay">Titular</div>
+                  <div class="cc-exp" id="ccExpDisplay">MM/AA</div>
+                </div>
+              </div>
+            </div>
+            <div class="card-fields">
+              <div class="field">
+                <label>Nombre del titular <span class="req">*</span></label>
+                <input type="text" id="ccName" placeholder="Como aparece en la tarjeta"
+                  oninput="ccNameDisplay.textContent = this.value || 'Titular'">
+              </div>
+              <div class="field">
+                <label>Número de tarjeta <span class="req">*</span></label>
+                <input type="text" id="ccNum" maxlength="19" placeholder="0000 0000 0000 0000"
+                  oninput="formatCC(this)">
+              </div>
+              <div class="cvv-row">
+                <div class="field">
+                  <label>Vencimiento <span class="req">*</span></label>
+                  <input type="text" id="ccExp" maxlength="5" placeholder="MM/AA"
+                    oninput="formatExp(this)">
+                </div>
+                <div class="field">
+                  <label>CVV <span class="req">*</span></label>
+                  <input type="password" id="ccCvv" maxlength="3" placeholder="•••">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel Efectivo -->
+        <div class="pay-panel" id="panelCash">
+          <div class="cash-msg">
+            <div class="cash-icon">💵</div>
+            <p>¡Gracias por tu compra! El pago se realizará <strong>en efectivo al momento de la entrega</strong> de tu producto.</p>
+          </div>
+        </div>
+
+        <button class="btn-main" style="margin-top:24px;width:100%" onclick="finalizarCompra()">Finalizar pedido ✓</button>
+      </div>
+
+      <div class="summary-card" id="summaryS3"></div>
+    </div>
+
+    <div class="actions" style="margin-top:20px">
+      <button class="btn-back" onclick="goScreen(2)">← Regresar a envío</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     SCREEN 4 — CONFIRMACIÓN
+══════════════════════════════════════ -->
+<div class="screen" id="screen4">
+  <div class="container">
+    <div class="success-screen">
+      <div class="success-icon">☕</div>
+      <div class="success-title">¡Pedido confirmado!</div>
+      <p class="success-sub">
+        Tu orden está en camino. Nos pondremos en contacto contigo para coordinar la entrega. ¡Gracias por elegir Coffe Lawhore!
+      </p>
+      <div class="success-order">
+        <div class="success-order-label">Número de pedido</div>
+        <div class="success-order-num" id="orderNum">#CL-000000</div>
+      </div>
+      <button class="btn-main" onclick="resetCart()">Volver al catálogo</button>
+    </div>
+  </div>
+</div>
+
+<script src="/js/Cart.js"></script>
+</body>
+</html>
