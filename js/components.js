@@ -15,7 +15,7 @@ class NavBar extends HTMLElement {
     const links = [
       { label: "Inicio",   href: "/index.html#inicio",    key: "inicio"   },
       { label: "Menú",     href: "/pages/menu.html",      key: "menu"     },
-      { label: "Nosotros", href: "/index.html#nosotros",  key: "nosotros" },
+      { label: "Nosotros", href: "/pages/nosotros.html",  key: "nosotros" },
       { label: "Contacto", href: "/index.html#contacto",  key: "contacto" },
       { label: "Carrito",  href: "/index.html#Carrito",   key: "carrito"  },
     ];
@@ -61,7 +61,7 @@ class SiteFooter extends HTMLElement {
             <h3>Enlaces rápidos</h3>
             <ul>
               <li><a href="/index.html">Inicio</a></li>
-              <li><a href="/index.html#nosotros">Nosotros</a></li>
+              <li><a href="/pages/nosotros.html">Nosotros</a></li>
               <li><a href="/pages/menu.html">Menú</a></li>
               <li><a href="/index.html#contacto">Contacto</a></li>
             </ul>

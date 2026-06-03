@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nosotros — Coffe Lawhore</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="shortcut icon" href="../img/logo.png" type="image/x-icon">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    >
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="../CSS/nosotros.css">
+    <script src="../js/components.js" defer></script>
+    <script src="../js/nosotros.js" defer></script>
+  </head>
+  <body>
+
+    <!-- Header: navegación y hero (banner) -->
+    <header role="banner">
+      <!-- Componente de navegación: menú principal reutilizable -->
+      <nav-bar page="nosotros"></nav-bar>
+
+      <!-- Hero: se presenta la proposición de valor principal -->
+      <section class="about-hero" aria-label="Sobre nosotros">
+        <div class="about-hero-content">
+          <!-- Eyebrow / pequeña etiqueta introductoria -->
+          <div class="about-hero-eyebrow">Nuestra historia</div>
+
+          <!-- Título principal del banner -->
+          <h1 class="about-hero-title">
+            Más que café,<br>somos un <em>ritual.</em>
+          </h1>
+
+          <!-- Descripción breve que acompaña al título -->
+          <p class="about-hero-sub">
+            Cada taza que preparamos nace de una pasión genuina y de años
+            perfeccionando el arte de servir algo memorable.
+          </p>
+        </div>
+
+        <!-- Año decorativo, para dar contexto histórico -->
+        <div class="about-hero-year">2018</div>
+
+        <!-- Imagen representativa del hero (fallback manejado por onerror) -->
+        <div class="about-hero-img">
+          <img
+            src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&q=80"
+            alt="Barista preparando café"
+            onerror="this.src='https://placehold.co/320x420/3d2e28/fdf8f0?text=☕'"
+          >
+        </div>
+      </section>
+    </header>
+
+    <main role="main">
+
+      <!-- Main: sección 'Origen' — cuenta la historia y el origen de los granos -->
+      <section class="origin" id="origen" aria-labelledby="origen-heading">
+        <div class="origin-inner">
+          <div class="origin-img-col">
+            <img
+              class="origin-img-main"
+              src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=700&q=80"
+              alt="Latte art"
+              onerror="this.src='https://placehold.co/500x480/3d2e28/fdf8f0?text=☕'"
+            >
+            <img
+              class="origin-img-secondary"
+              src="https://images.unsplash.com/photo-1453614512568-c4024d13c247?w=400&q=80"
+              alt="Granos de café"
+              onerror="this.src='https://placehold.co/260x220/3d2e28/fdf8f0?text=☕'"
+            >
+            <div class="origin-img-deco"></div>
+          </div>
+
+          <div class="origin-text-col">
+            <span class="section-label">El comienzo</span>
+            <h2 id="origen-heading">
+              Nacimos de la<br>curiosidad y el<br><em>amor por el grano.</em>
+            </h2>
+            <p>
+              En 2018, tres amigos con una obsesión compartida abrieron las puertas
+              de <strong style="color:var(--green-deep)">Coffe Lawhore</strong>
+              en una pequeña esquina de la ciudad. No teníamos mucho espacio,
+              pero sí una idea clara: hacer del café una experiencia que valiera
+              la pena pausar el día.
+            </p>
+            <div class="origin-divider"></div>
+            <p>
+              Viajamos a las fincas, conocimos a los productores, aprendimos los
+              perfiles de tueste. Cada grano que llega a nuestras manos tiene una
+              historia — y nosotros nos comprometemos a contarla en cada taza.
+            </p>
+            <blockquote class="origin-quote">
+              <p>"El buen café no se apresura. Se trabaja, se cuida, se escucha."</p>
+              <cite>— Fundadores, Coffe Lawhore</cite>
+            </blockquote>
+          </div>
+        </div>
+      </section>
+
+      <!-- Valores: principios y propuestas que definen la marca -->
+      <section class="values" id="valores" aria-labelledby="valores-heading">
+        <!-- Encabezado de la sección de valores -->
+        <div class="values-header">
+          <span class="section-label">Lo que nos mueve</span>
+          <h2 id="valores-heading">Nuestros valores</h2>
+          <p>Los principios que guían cada decisión, cada taza, cada día.</p>
+        </div>
+        <div class="values-grid">
+          <div class="value-card" data-num="01">
+            <div class="value-icon">◆</div>
+            <div class="value-title">Sostenibilidad</div>
+            <p class="value-text">
+              Trabajamos solo con proveedores que respetan la tierra. Vasos
+              compostables, sin desperdicio, cadena justa del productor a tu taza.
+            </p>
+          </div>
+          <div class="value-card" data-num="02">
+            <div class="value-icon">★</div>
+            <div class="value-title">Artesanía</div>
+            <p class="value-text">
+              Cada bebida se prepara a mano, con técnica y atención. No hay
+              atajos cuando se trata de algo que te vas a tomar despacio.
+            </p>
+          </div>
+          <div class="value-card" data-num="03">
+            <div class="value-icon">◉</div>
+            <div class="value-title">Comunidad</div>
+            <p class="value-text">
+              Somos un punto de encuentro. Organizamos eventos, apoyamos
+              artistas locales y creamos espacio para la conversación genuina.
+            </p>
+          </div>
+          <div class="value-card" data-num="04">
+            <div class="value-icon">✧</div>
+            <div class="value-title">Curiosidad</div>
+            <p class="value-text">
+              Siempre aprendiendo — de nuevos orígenes, métodos de extracción
+              y maridajes inesperados que sorprenden al paladar.
+            </p>
+          </div>
+          <div class="value-card" data-num="05">
+            <div class="value-icon">♥</div>
+            <div class="value-title">Cuidado</div>
+            <p class="value-text">
+              Nos importa cada persona que entra. No somos una cadena — somos
+              un lugar donde te conocemos por tu nombre y tu orden favorita.
+            </p>
+          </div>
+          <div class="value-card" data-num="06">
+            <div class="value-icon">✓</div>
+            <div class="value-title">Honestidad</div>
+            <p class="value-text">
+              Café real, ingredientes reales, precios justos. Sin trucos de
+              marketing — solo lo que hay en la taza habla por nosotros.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Equipo: presentación del equipo humano detrás de la marca -->
+      <section class="team" id="equipo" aria-labelledby="equipo-heading">
+        <!-- Cabecera de equipo y descripción breve -->
+        <div class="team-header reveal">
+          <span class="section-label">Las personas detrás de cada taza</span>
+          <h2 id="equipo-heading">Nuestro equipo</h2>
+          <p>Apasionados, creativos y siempre con ganas de sorprenderte.</p>
+        </div>
+        <div class="team-grid">
+          <div class="team-card">
+            <div class="team-img-wrap">
+              <img
+                src="https://i.pinimg.com/1200x/06/a6/c3/06a6c373aba2f3e6e9dd6200581c4848.jpg"
+                alt="Alejandro Reyes"
+                onerror="this.src=''"
+              >
+            </div>
+            <div class="team-name">Mónica Ruiz. </div>
+            <div class="team-role">Co-fundador & Head Barista</div>
+            <p class="team-bio">14 años extrayendo el alma del espresso. Campeón regional de latte art 2022.</p>
+          </div>
+          <div class="team-card">
+            <div class="team-img-wrap">
+              <img
+                src="https://i.pinimg.com/736x/6e/11/40/6e11404fcea7606ce86bc74c1dd01fe7.jpg"
+                alt="Sofía Martínez"
+                onerror="this.src=''"
+              >
+            </div>
+            <div class="team-name">Jesús Dueñas.</div>
+            <div class="team-role">Co-fundadora & Directora Creativa</div>
+            <p class="team-bio">La mente detrás de la experiencia visual y sensorial de cada rincón del local.</p>
+          </div>
+          <div class="team-card">
+            <div class="team-img-wrap">
+              <img
+                src="https://i.pinimg.com/1200x/8c/76/7f/8c767f0142abb5ed165977d3d9facd99.jpg"
+                alt="Daniel Fuentes"
+                onerror="this.src=''"
+              >
+            </div>
+            <div class="team-name">Fabiola Martinez.</div>
+            <div class="team-role">Maestro Tostador</div>
+            <p class="team-bio">Visita fincas dos veces al año para seleccionar los granos que definen nuestra temporada.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Proceso: pasos clave del flujo desde la finca hasta la taza -->
+      <section class="process" id="proceso" aria-labelledby="proceso-heading">
+        <!-- Encabezado del proceso y descripción -->
+        <div class="process-header reveal">
+          <span class="section-label">De la tierra a tu taza</span>
+          <h2 id="proceso-heading">Nuestro proceso</h2>
+          <p>Cada paso importa. Así garantizamos que lo que bebes sea excepcional.</p>
+        </div>
+        <div class="process-steps">
+          <div class="process-step">
+            <div class="step-dot">1</div>
+            <span class="step-num">Paso 01</span>
+            <div class="step-title">Selección del grano</div>
+            <p class="step-desc">Visitamos fincas y catamos directamente para elegir solo los mejores lotes de cada cosecha.</p>
+          </div>
+          <div class="process-step">
+            <div class="step-dot">2</div>
+            <span class="step-num">Paso 02</span>
+            <div class="step-title">Tueste artesanal</div>
+            <p class="step-desc">Tostamos en pequeños lotes semanales para garantizar frescura y desarrollar perfiles únicos.</p>
+          </div>
+          <div class="process-step">
+            <div class="step-dot">3</div>
+            <span class="step-num">Paso 03</span>
+            <div class="step-title">Extracción precisa</div>
+            <p class="step-desc">Temperatura, presión y tiempo calibrados a la perfección para cada método de preparación.</p>
+          </div>
+          <div class="process-step">
+            <div class="step-dot">4</div>
+            <span class="step-num">Paso 04</span>
+            <div class="step-title">Tu taza, con amor</div>
+            <p class="step-desc">Servida con cuidado, con arte si la ocasión lo pide, y siempre con una sonrisa genuina.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA Final: invitación a visitar o conocer el menú -->
+      <section class="about-cta" aria-label="Llamada a la acción">
+        <div class="about-cta-inner">
+          <span class="section-label">Ven a conocernos</span>
+          <h2>Cada visita es el<br>inicio de algo bueno.</h2>
+          <p>
+            Ya sea tu primera taza con nosotros o la de siempre, te esperamos
+            con el mismo cuidado y el mejor café de la ciudad.
+          </p>
+          <div class="cta-btns">
+            <a href="./menu.html" class="btn-primary">Ver menú</a>
+            <a href="../index.html#contacto" class="btn-ghost">Contáctanos</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <site-footer></site-footer>
+
+  </body>
+</html>
