@@ -253,7 +253,7 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(58, 46, 40, 0.08); }
   background: #1e1a17; border-radius: 20px; overflow: visible;
   box-shadow: 0 8px 40px rgba(0,0,0,0.22);
   transition: transform 0.4s cubic-bezier(0.23,1.2,0.5,1), box-shadow 0.4s ease;
-  opacity: 0; transform: translateY(40px);
+  opacity: 1; transform: translateY(0px);
   position: relative; margin-top: 70px;
 }
 .drink-card.visible {
