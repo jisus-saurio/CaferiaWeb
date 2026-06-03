@@ -24,6 +24,7 @@ body  { font-family: var(--font-body); background: var(--cream); color: var(--te
 
 /* ── Navegación ─────────────────────────────────────────── */
 nav {
+  position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 1000;
   height: var(--nav-h);

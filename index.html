@@ -5,30 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coffe Lawhore</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/img/logo.png" type="image/x-icon">
     <link
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap"
       rel="stylesheet"
     >
-    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="/CSS/style.css">
+    <script src="/js/components.js" defer></script>
   </head>
   <body>
     <!-- Cabecera -->
     <header>
-      <!-- Navegación -->
-      <nav id="navPrincipal">
-        <a href="#" class="nav-logo">
-          <img class="nav-logo-img" src="img/logo.png" alt="Coffe Lawhore logo">
-          <div class="nav-logo-text">Coffe Lawhore</div>
-        </a>
-        <ul class="nav-links">
-          <li><a href="#inicio">Inicio</a></li>
-          <li><a href="/pages/menu.html">Menú</a></li>
-          <li><a href="#nosotros">Nosotros</a></li>
-          <li><a href="#contacto">Contacto</a></li>
-          <li><a href="#Carrito">Carrito</a></li>
-        </ul>
-      </nav>
+      <nav-bar page="inicio"></nav-bar>
 
       <!-- Hero / Sección destacada -->
       <section class="heroe" id="inicio" aria-label="Hero">
@@ -303,54 +291,10 @@
       </section>
     </main>
 
-    <!-- Pie de página -->
-    <footer>
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <div class="footer-logo">Coffe Lawhore</div>
-          <p>
-            Cada taza es una historia. Cada visita, un recuerdo para guardar.
-          </p>
-          <div class="footer-socials">
-            <div class="footer-social">ig</div>
-            <div class="footer-social">tw</div>
-            <div class="footer-social">wa</div>
-          </div>
-        </div>
-        <div class="footer-col">
-          <h3>Enlaces rápidos</h3>
-          <ul>
-            <li><a href="#">Inicio</a></li>
-            <li><a href="#">Nosotros</a></li>
-            <li><a href="#">Tienda</a></li>
-            <li><a href="#">Blog</a></li>
-            <li><a href="#">Contacto</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h3>Soporte</h3>
-          <ul>
-            <li><a href="#">Atención</a></li>
-            <li><a href="#">Servicio 24h</a></li>
-            <li><a href="#">Chat rápido</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h3>Síguenos</h3>
-          <div class="footer-socials" style="margin-top: 4px">
-            <div class="footer-social">ig</div>
-            <div class="footer-social">tw</div>
-            <div class="footer-social">wa</div>
-          </div>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <span>© 2026 Coffe Lawhore. Todos los derechos reservados.</span>
-        <span class="footer-credit">Creado con amor, impulsado por café.</span>
-      </div>
-    </footer>
+    <!-- ✅ Footer reutilizable -->
+    <site-footer></site-footer>
 
     <!-- Script principal -->
-    <script src="js/main.js"></script>
+    <script src="/js/main.js"></script>
   </body>
 </html>
