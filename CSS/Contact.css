@@ -34,7 +34,15 @@ html, body {
 /* ── LAYOUT: SPLIT ─────────────────────────────────────────────── */
 body {
   display: flex;
+  flex-direction: column;
   min-height: 100vh;
+  padding-top: var(--nav-h);
+}
+
+.contact-main {
+  display: flex;
+  flex: 1;
+  min-height: calc(100vh - var(--nav-h));
 }
 
 /* ── LEFT: BG PANEL ────────────────────────────────────────────── */
@@ -43,7 +51,7 @@ body {
   width: 42%;
   flex-shrink: 0;
   overflow: hidden;
-  min-height: 100vh;
+  min-height: 100%;
 }
 
 .bg-img {
