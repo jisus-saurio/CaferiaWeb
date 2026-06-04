@@ -16,7 +16,7 @@ class NavBar extends HTMLElement {
       { label: "Inicio",   href: "/index.html#inicio",    key: "inicio"   },
       { label: "Menú",     href: "/pages/menu.html",      key: "menu"     },
       { label: "Nosotros", href: "/pages/nosotros.html",  key: "nosotros" },
-      { label: "Contacto", href: "/index.html#contacto",  key: "contacto" },
+      { label: "Contacto", href: "/pages/Contact.html",  key: "contacto" },
       { label: "Carrito",  href: "/pages/Cart.html",   key: "carrito"  },
     ];
 
