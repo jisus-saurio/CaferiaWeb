@@ -220,53 +220,94 @@
 
       <!-- Nosotros -->
       <section class="about" id="nosotros" aria-labelledby="nosotros-heading">
-        <div class="about-card">
-          <div class="about-top">
-            <div class="about-img fade-up">
-              <img
-                src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&q=80"
-                alt="Coffee cup"
-              >
-              <div class="img-frame-deco"></div>
+
+        <!-- Título centrado arriba -->
+        <div class="about-header fade-up">
+          <span class="section-label">Quiénes somos</span>
+          <h2 id="nosotros-heading">Coffe Lawhore <em>es</em></h2>
+        </div>
+
+        <!-- Layout: columna izquierda imagen central columna derecha -->
+        <div class="about-split">
+
+          <!-- Columna izquierda: features -->
+          <div class="about-features-col">
+            <div class="about-feature fade-up">
+              <span class="feature-num">1</span>
+              <div class="feature-body">
+                <h3>Alta calidad en cada grano</h3>
+                <p>Nuestra pasión por el café comienza con la selección del grano. Nos aseguramos de que cada taza ofrezca una experiencia única de sabor y placer.</p>
+              </div>
             </div>
-            <div class="about-text fade-up">
-              <span class="section-label">Nuestra historia</span>
-              <h2 id="nosotros-heading">Sobre nosotros</h2>
-              <p>
-                En <strong>Coffe Lawhore</strong>, cada taza comienza con
-                granos cuidadosamente seleccionados, tostados para resaltar sus
-                sabores más ricos. Pero el café aquí no es solo sabor — se trata
-                de desacelerar, encontrar conexión y crear momentos para
-                saborear.
-              </p>
-              <p>
-                Desde nuestros lattes emblemáticos hasta nuestras pastas de
-                pequeño lote, todo lo que servimos está hecho con intención.
-              </p>
-            </div>
-          </div>
-          <div class="about-bottom">
-            <div class="about-bottom-text fade-up">
-              <p>
-                Creamos en la sostenibilidad, en apoyar a proveedores locales y
-                en hacer de nuestro espacio un lugar donde todos se sientan
-                bienvenidos.
-              </p>
-              <p>
-                Ya sea que estés aquí por tu ritual matutino, una recarga por la
-                tarde o una conversación nocturna, servimos más que café —
-                servimos cuidado, creatividad y comunidad en cada taza.
-              </p>
-              <button class="btn-explore">Explora nuestro menú →</button>
-            </div>
-            <div class="about-bottom-img fade-up">
-              <img
-                src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=600&q=80"
-                alt="Latte art"
-              >
-              <div class="img-frame-deco right"></div>
+            <div class="about-feature fade-up">
+              <span class="feature-num">2</span>
+              <div class="feature-body">
+                <h3>Ambiente que inspira</h3>
+                <p>Nuestro espacio es un refugio acogedor lleno de calidez. Rodeado de atención genuina, puedes relajarte, disfrutar tu café y dejarte llevar por una buena conversación.</p>
+              </div>
             </div>
           </div>
+
+          <!-- Carrusel central con 3 bebidas -->
+          <div class="about-center-img fade-up">
+            <div class="about-carousel">
+              <div class="about-drink about-drink--prev">
+                <img
+                  src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400&q=80"
+                  alt="Frappe"
+                  onerror="this.src=''"
+                >
+              </div>
+
+              <div class="about-drink about-drink--active">
+                <img
+                  src="https://images.unsplash.com/photo-1541167760496-1628856ab772?w=400&q=80"
+                  alt="Latte Caramelizado"
+                  onerror="this.src=''"
+                >
+              </div>
+
+              <div class="about-drink about-drink--next">
+                <img
+                  src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=400&q=80"
+                  alt="Mocha"
+                  onerror="this.src=''"
+                >
+              </div>
+
+              <!-- Flechas -->
+              <button class="about-arrow about-arrow--left" id="aboutPrev">&#8592;</button>
+              <button class="about-arrow about-arrow--right" id="aboutNext">&#8594;</button>
+            </div>
+
+            <!-- Puntos -->
+            <div class="about-dots">
+              <span class="about-dot active" data-i="0"></span>
+              <span class="about-dot" data-i="1"></span>
+              <span class="about-dot" data-i="2"></span>
+            </div>
+
+            <a href="/pages/menu.html" class="btn-about-order">Ver menú</a>
+          </div>
+
+          <!-- Columna derecha: features -->
+          <div class="about-features-col right">
+            <div class="about-feature fade-up">
+              <span class="feature-num">3</span>
+              <div class="feature-body">
+                <h3>Atención personalizada a cada cliente</h3>
+                <p>Preparamos café que refleja tus preferencias, creando bebidas únicas especialmente para ti. Cada visita es una experiencia irrepetible.</p>
+              </div>
+            </div>
+            <div class="about-feature fade-up">
+              <span class="feature-num">4</span>
+              <div class="feature-body">
+                <h3>Equipo barista profesional</h3>
+                <p>Nuestros baristas tienen amplia experiencia preparando café y están listos para demostrarte todos sus extraordinarios talentos en cada taza.</p>
+              </div>
+            </div>
+          </div>
+
         </div>
       </section>
 
@@ -291,8 +332,52 @@
       </section>
     </main>
 
-    <!-- ✅ Footer reutilizable -->
+    <!-- Footer reutilizable -->
     <site-footer></site-footer>
+
+    <!-- Script carrusel nosotros -->
+    <script>
+      (function () {
+        const drinks = [
+          "https://muffinbreak.com.au/wp-content/uploads/2020/11/55_COFFEE-FRAPPE-3_4-03_Retouch.png",
+          "https://frappeartesanal.com/wp-content/uploads/2024/12/Rom-Ferrero-Rocher.png",
+          "https://static.vecteezy.com/system/resources/thumbnails/053/652/174/small/iced-chocolate-drink-whipped-cream-chocolate-drizzle-cold-beverage-png.png"
+        ];
+        const alts = ["Latte Caramelizado", "Mocha Capricho", "Frappe con Chispas"];
+        let current = 0;
+
+        const prev  = document.querySelector(".about-drink--prev img");
+        const active= document.querySelector(".about-drink--active img");
+        const next  = document.querySelector(".about-drink--next img");
+        const dots  = document.querySelectorAll(".about-dot");
+        const btnL  = document.getElementById("aboutPrev");
+        const btnR  = document.getElementById("aboutNext");
+
+        function idx(n) { return (n + drinks.length) % drinks.length; }
+
+        function update() {
+          // Añadir clase de animación
+          const activeWrap = document.querySelector(".about-drink--active");
+          activeWrap.classList.add("about-drink--transition");
+          setTimeout(() => activeWrap.classList.remove("about-drink--transition"), 400);
+
+          prev.src   = drinks[idx(current - 1)];
+          prev.alt   = alts[idx(current - 1)];
+          active.src = drinks[current];
+          active.alt = alts[current];
+          next.src   = drinks[idx(current + 1)];
+          next.alt   = alts[idx(current + 1)];
+          dots.forEach((d, i) => d.classList.toggle("active", i === current));
+        }
+
+        btnL.addEventListener("click", () => { current = idx(current - 1); update(); });
+        btnR.addEventListener("click", () => { current = idx(current + 1); update(); });
+        dots.forEach(d => d.addEventListener("click", () => { current = +d.dataset.i; update(); }));
+
+        // Auto-play
+        setInterval(() => { current = idx(current + 1); update(); }, 3500);
+      })();
+    </script>
 
     <!-- Script principal -->
     <script src="/js/main.js"></script>
