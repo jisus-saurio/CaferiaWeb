@@ -118,15 +118,15 @@
           </div>
 
           <div class="field-row">
-            <div class="field">
-              <label for="counterVal">Número de personas <span class="req">*</span></label>
+            <fieldset class="field" style="border:none;padding:0;margin:0;">
+              <legend class="field-legend">Número de personas <span class="req">*</span></legend>
               <div class="counter-wrap">
                 <button type="button" class="counter-btn" onclick="changeCount(-1)">−</button>
                 <span class="counter-val" id="counterVal" role="spinbutton" aria-valuenow="2" aria-valuemin="1" tabindex="0">2</span>
                 <button type="button" class="counter-btn" onclick="changeCount(1)">+</button>
                 <input type="hidden" id="r-personas" name="r-personas" value="2">
               </div>
-            </div>
+            </fieldset>
             <div class="field">
               <label for="r-ocasion">Ocasión especial</label>
               <select id="r-ocasion" name="r-ocasion">
