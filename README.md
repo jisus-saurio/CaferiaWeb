@@ -33,3 +33,7 @@ El sitio usa una paleta cálida de café, crema y verdes suaves, y presenta un l
  ## 🎶 Figma
 
  https://www.figma.com/design/zsdwVSNR61MZKh706KU6iy/Mockup-Cafeteria?node-id=0-1&t=HhfbSpUupg3y2JFf-1
+
+  ## ✨ Link de pagina
+
+  https://coffelawhore.netlify.app/
