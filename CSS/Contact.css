@@ -489,78 +489,83 @@ body {
   background: var(--green-deep);
   color: #fff;
 }
-
-/* ── RESPONSIVE ─────────────────────────────────────────────────── */
 @media (max-width: 820px) {
   body { flex-direction: column; }
 
+  .contact-main { flex-direction: column; min-height: unset; }
+
   .bg-panel {
     width: 100%;
-    min-height: 300px;
-    max-height: 360px;
+    min-height: 260px;
+    max-height: 320px;
+    flex-shrink: 0;
   }
 
-  .bg-content { padding: 32px 28px; }
+  .bg-content { padding: 28px 24px; justify-content: flex-end; }
+  .bg-headline { font-size: clamp(24px, 5.5vw, 36px); margin-bottom: 10px; }
+  .bg-sub      { font-size: 13px; margin-bottom: 18px; }
 
   .form-panel {
-    padding: 36px 24px;
+    flex: unset;
+    width: 100%;
+    padding: 32px 24px 48px;
+    align-items: stretch;
   }
 
-  .field-row { grid-template-columns: 1fr; }
+  .form-inner { max-width: 100%; }
+
+  .field-row { grid-template-columns: 1fr; gap: 0; }
+  .field-row .field { margin-bottom: 16px; }
 }
 
-@media (max-width: 480px) {
-  .tabs { flex-direction: column; }
-  .tab { justify-content: flex-start; }
-}
+@media (max-width: 540px) {
+  .bg-panel    { min-height: 220px; max-height: 270px; }
+  .bg-content  { padding: 20px 16px; }
+  .bg-headline { font-size: clamp(20px, 6vw, 28px); }
+  .brand-tagline { font-size: 10px; }
+  .bg-sub      { font-size: 12.5px; margin-bottom: 14px; }
+  .bg-details  { gap: 6px; }
+  .detail-item { font-size: 11.5px; }
 
-/* ── Móvil grande (≤ 640px) ── */
-@media (max-width: 640px) {
-  /* Panel izquierdo de imagen */
-  .bg-panel   { min-height: 240px; max-height: 280px; }
-  .bg-content { padding: 24px 20px; }
-  .bg-headline { font-size: clamp(22px, 6.5vw, 32px); margin-bottom: 10px; }
-  .bg-sub      { font-size: 13px; margin-bottom: 20px; }
-  .bg-details  { gap: 7px; }
-  .detail-item { font-size: 12px; }
-
-  /* Panel derecho del formulario */
-  .form-panel { padding: 28px 16px 40px; }
-  .form-title  { font-size: clamp(22px, 7vw, 32px); }
+  .form-panel  { padding: 24px 16px 40px; }
+  .form-title  { font-size: clamp(22px, 7vw, 30px); }
   .form-subtitle { font-size: 13px; margin-bottom: 20px; }
 
-  /* Tabs */
-  .tabs { padding: 4px; border-radius: 14px; }
-  .tab  { padding: 10px 12px; font-size: 12.5px; border-radius: 11px; }
-  .tab-icon { font-size: 14px; }
+  .tabs {
+    flex-direction: row;
+    padding: 4px;
+    gap: 4px;
+    border-radius: 14px;
+  }
+  .tab {
+    flex: 1;
+    padding: 10px 8px;
+    font-size: 12.5px;
+    justify-content: center;
+    border-radius: 11px;
+  }
+  .tab-icon { font-size: 13px; }
 
-  /* Campos */
   .field input,
   .field select,
-  .field textarea { padding: 11px 14px; font-size: 13.5px; }
-  .field label     { font-size: 11px; }
+  .field textarea { padding: 11px 13px; font-size: 14px; }
 
-  /* Contador de personas */
-  .counter-wrap  { height: 44px; }
+  .counter-wrap  { height: 46px; }
   .counter-btn   { width: 44px; font-size: 18px; }
   .counter-val   { font-size: 15px; }
 
-  /* Botón de envío */
-  .btn-submit { padding: 14px 24px; font-size: 14px; margin-top: 20px; }
+  .btn-submit    { padding: 14px 20px; font-size: 14px; margin-top: 18px; }
 
-  /* Estado de éxito */
-  .success-msg     { padding: 32px 12px; }
-  .success-icon    { font-size: 44px; }
-  .success-title   { font-size: 24px; }
-  .success-body    { font-size: 13.5px; }
+  .success-msg   { padding: 28px 8px; }
+  .success-title { font-size: 24px; }
+  .success-body  { font-size: 13.5px; }
 }
 
-/* ── Móvil pequeño (≤ 380px) ── */
 @media (max-width: 380px) {
-  .bg-panel    { min-height: 200px; max-height: 240px; }
-  .bg-headline { font-size: 20px; }
-  .form-panel  { padding: 22px 12px 36px; }
-  .tabs        { gap: 5px; }
-  .tab         { padding: 9px 10px; font-size: 12px; }
-  .btn-submit  { font-size: 13.5px; padding: 13px 18px; }
+  .bg-panel    { min-height: 190px; max-height: 230px; }
+  .bg-headline { font-size: 19px; }
+  .form-panel  { padding: 20px 12px 36px; }
+  .tabs        { gap: 3px; }
+  .tab         { padding: 9px 6px; font-size: 11.5px; }
+  .btn-submit  { font-size: 13px; padding: 13px 16px; }
 }
