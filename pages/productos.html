@@ -7,6 +7,31 @@
     <link rel="stylesheet" href="/CSS/style.css">
     <link rel="shortcut icon" href="/img/logo.png" type="image/x-icon">
     <script src="/js/components.js" defer></script>
+    <style>
+      .cart-fab {
+        position: fixed; bottom: 32px; right: 32px; z-index: 999;
+        background: #7c4f2f; color: #fff;
+        width: 56px; height: 56px; border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        box-shadow: 0 4px 20px rgba(60,30,10,.35);
+        text-decoration: none;
+        transition: background .2s, transform .2s;
+      }
+      .cart-fab:hover { background: #3b1f0e; transform: translateY(-2px); }
+      .cart-fab-count {
+        position: absolute; top: -4px; right: -4px;
+        background: #c8873a; color: #fff;
+        font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 700;
+        min-width: 20px; height: 20px; border-radius: 10px;
+        display: flex; align-items: center; justify-content: center;
+        padding: 0 5px;
+        opacity: 0; transform: scale(0);
+        transition: opacity .2s, transform .2s;
+      }
+      .cart-fab-count.visible { opacity: 1; transform: scale(1); }
+      .cart-fab.bump { animation: fabBump .3s ease; }
+      @keyframes fabBump { 0%,100%{transform:scale(1)} 50%{transform:scale(1.18)} }
+    </style>
 </head>
 <body>
     <header>
@@ -31,7 +56,7 @@
                 alt="Frappuccino de caramelo">
             </div>
             <div class="drink-card-body">
-              <h3 class="drink-card-name">Frappuccino de caramelo</h3>
+              <h2 class="drink-card-name">Frappuccino de caramelo</h2>
               <p class="drink-card-desc">
                 Un delicioso batido de café con leche y hielo, endulzado con sabor a caramelo.
               </p>
@@ -51,7 +76,7 @@
               >
             </div>
             <div class="drink-card-body">
-              <h3 class="drink-card-name">Milshake de chocolate</h3>
+              <h2 class="drink-card-name">Milshake de chocolate</h2>
               <p class="drink-card-desc">
                 Un delicioso batido de chocolate con leche y hielo, coronado con crema fresca y virutas de chocolate.
               </p>
@@ -71,7 +96,7 @@
               >
             </div>
             <div class="drink-card-body">
-              <h3 class="drink-card-name">Frappuccino de vainilla</h3>
+              <h2 class="drink-card-name">Frappuccino de vainilla</h2>
               <p class="drink-card-desc">
                 Un delicioso batido de café con leche y hielo, endulzado con vainilla,
                 rematado con crema para un deleite refrescante.
@@ -89,7 +114,7 @@
 
       <!-- Inicio de postres dulces -->
 
-<section class="featured" id="menu" aria-labelledby="featured-heading">
+<section class="featured" id="menu-postres" aria-labelledby="featured-heading">
   <div class="featured-header">
     <h1>Postres</h1>
     <p>"El acompañante perfecto para tu bebida. No te vayas sin probarlos"</p>
@@ -105,7 +130,7 @@
                 alt="Tres leches">
             </div>
             <div class="drink-card-body">
-              <h3 class="drink-card-name">Tres leches</h3>
+              <h2 class="drink-card-name">Tres leches</h2>
               <p class="drink-card-desc">
                 Un postre tradicional mexicano hecho con tres tipos de leche y bizcocho esponjoso.
               </p>
@@ -125,7 +150,7 @@
               >
             </div>
             <div class="drink-card-body">
-              <h3 class="drink-card-name">Pastel de tiramisu</h3>
+              <h2 class="drink-card-name">Pastel de tiramisu</h2>
               <p class="drink-card-desc">
                 Un postre italiano hecho con bizcochos empapados en café y crema de mascarpone, coronado con nueces.
               </p>
@@ -145,7 +170,7 @@
               >
             </div>
             <div class="drink-card-body">
-              <h3 class="drink-card-name">Pastel de moka</h3>
+              <h2 class="drink-card-name">Pastel de moka</h2>
               <p class="drink-card-desc">
                 Un postre irresistible hecho con chocolate y crema de moka.
               </p>
@@ -171,7 +196,7 @@
               >
             </div>
             <div class="drink-card-body">
-              <h3 class="drink-card-name">Crossaint de jamón y queso</h3>
+              <h2 class="drink-card-name">Crossaint de jamón y queso</h2>
               <p class="drink-card-desc">
                 Un sándwich delicioso hecho con pan crujiente, jamón y queso.
               </p>
@@ -191,7 +216,7 @@
               >
             </div>
             <div class="drink-card-body">
-              <h3 class="drink-card-name">Wrap de pollo</h3>
+              <h2 class="drink-card-name">Wrap de pollo</h2>
               <p class="drink-card-desc">
                 Una deliciosa tortilla envuelta con pollo, lechuga, tomate y queso.
               </p>
@@ -211,7 +236,7 @@
               >
             </div>
             <div class="drink-card-body">
-              <h3 class="drink-card-name">Empanadas de carne</h3>
+              <h2 class="drink-card-name">Empanadas de carne</h2>
               <p class="drink-card-desc">
                 Empanadas deliciosas rellenas de carne y especias, acompañadas de salsa especial.
               </p>
@@ -238,32 +263,6 @@
       </svg>
       <span class="cart-fab-count" id="cartCount">0</span>
     </a>
-
-    <style>
-      .cart-fab {
-        position: fixed; bottom: 32px; right: 32px; z-index: 999;
-        background: #7c4f2f; color: #fff;
-        width: 56px; height: 56px; border-radius: 50%;
-        display: flex; align-items: center; justify-content: center;
-        box-shadow: 0 4px 20px rgba(60,30,10,.35);
-        text-decoration: none;
-        transition: background .2s, transform .2s;
-      }
-      .cart-fab:hover { background: #3b1f0e; transform: translateY(-2px); }
-      .cart-fab-count {
-        position: absolute; top: -4px; right: -4px;
-        background: #c8873a; color: #fff;
-        font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 700;
-        min-width: 20px; height: 20px; border-radius: 10px;
-        display: flex; align-items: center; justify-content: center;
-        padding: 0 5px;
-        opacity: 0; transform: scale(0);
-        transition: opacity .2s, transform .2s;
-      }
-      .cart-fab-count.visible { opacity: 1; transform: scale(1); }
-      .cart-fab.bump { animation: fabBump .3s ease; }
-      @keyframes fabBump { 0%,100%{transform:scale(1)} 50%{transform:scale(1.18)} }
-    </style>
 
     <script>
       // Productos definidos en el orden del HTML

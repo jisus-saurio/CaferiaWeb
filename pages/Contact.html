@@ -66,7 +66,7 @@
       <form id="contactForm" novalidate>
 
         <!-- ── PANEL: RESERVA ── -->
-        <div class="tab-panel active" id="panel-reserva">
+        <div class="tab-panel active" id="panel-reserva" role="tabpanel" aria-labelledby="tab-reserva">
 
           <div class="field-row">
             <div class="field">
@@ -119,10 +119,10 @@
 
           <div class="field-row">
             <div class="field">
-              <label for="r-personas">Número de personas <span class="req">*</span></label>
+              <label for="counterVal">Número de personas <span class="req">*</span></label>
               <div class="counter-wrap">
                 <button type="button" class="counter-btn" onclick="changeCount(-1)">−</button>
-                <span class="counter-val" id="counterVal">2</span>
+                <span class="counter-val" id="counterVal" role="spinbutton" aria-valuenow="2" aria-valuemin="1" tabindex="0">2</span>
                 <button type="button" class="counter-btn" onclick="changeCount(1)">+</button>
                 <input type="hidden" id="r-personas" name="r-personas" value="2">
               </div>
@@ -149,7 +149,7 @@
         </div>
 
         <!-- ── PANEL: MENSAJE ── -->
-        <div class="tab-panel" id="panel-mensaje">
+        <div class="tab-panel" id="panel-mensaje" role="tabpanel" aria-labelledby="tab-mensaje">
 
           <div class="field-row">
             <div class="field">
@@ -199,6 +199,7 @@
       </div>
 
     </div>
+  </div>
   </main>
   <site-footer></site-footer>
 
