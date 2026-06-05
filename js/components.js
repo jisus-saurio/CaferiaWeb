@@ -62,8 +62,8 @@ class SiteFooter extends HTMLElement {
             <ul>
               <li><a href="/index.html">Inicio</a></li>
               <li><a href="/pages/nosotros.html">Nosotros</a></li>
-              <li><a href="/pages/menu.html">Menú</a></li>
-              <li><a href="/index.html#contacto">Contacto</a></li>
+              <li><a href="/pages/productos.html">Menú</a></li>
+              <li><a href="/pages/Contact.html#contacto">Contacto</a></li>
             </ul>
           </div>
           <div class="footer-col">

@@ -1,19 +1,8 @@
 // ── STATE ──────────────────────────────────────────────────────────
 const SHIPPING = 3.50;
-let cart = [
-  {
-    id:1, name:'Frappe de Moca',
-    spec:'leche: entera / toppings: oreo / extra: chantilly',
-    price:11.00, qty:2,
-    img:'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=200&q=80'
-  },
-  {
-    id:2, name:'Café Helado',
-    spec:'leche: deslactosada / toppings: caramelo / extra: shot',
-    price:17.55, qty:1,
-    img:'https://images.unsplash.com/photo-1541167760496-1628856ab772?w=200&q=80'
-  }
-];
+let cart = (function() {
+  try { return JSON.parse(localStorage.getItem('cl_cart') || '[]'); } catch { return []; }
+})();
 let currentScreen = 1;
 let activePayTab = 'card';
 
@@ -68,16 +57,16 @@ function renderCart() {
         <div>
           <div class="cart-col-label">Cantidad</div>
           <div class="qty-ctrl">
-            <button class="qty-btn" onclick="changeQty(${item.id}, -1)">−</button>
+            <button class="qty-btn" onclick="changeQty('${item.id}', -1)">−</button>
             <span class="qty-num">${item.qty}</span>
-            <button class="qty-btn" onclick="changeQty(${item.id}, +1)">+</button>
+            <button class="qty-btn" onclick="changeQty('${item.id}', +1)">+</button>
           </div>
         </div>
         <div>
           <div class="cart-col-label">Subtotal</div>
           <div class="price-val">$${(item.price * item.qty).toFixed(2)}</div>
         </div>
-        <button class="btn-remove" title="Eliminar" onclick="removeItem(${item.id})">
+        <button class="btn-remove" title="Eliminar" onclick="removeItem('${item.id}')">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="3 6 5 6 21 6"></polyline>
             <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"></path>
@@ -103,12 +92,14 @@ function changeQty(id, delta) {
   const item = cart.find(i => i.id === id);
   if (!item) return;
   item.qty = Math.max(1, item.qty + delta);
+  localStorage.setItem('cl_cart', JSON.stringify(cart));
   renderCart();
   if (currentScreen >= 2) renderSummary();
 }
 
 function removeItem(id) {
   cart = cart.filter(i => i.id !== id);
+  localStorage.setItem('cl_cart', JSON.stringify(cart));
   renderCart();
   if (currentScreen >= 2) renderSummary();
 }
@@ -324,6 +315,7 @@ function finalizarCompra() {
 
 function resetCart() {
   cart = [];
+  localStorage.removeItem('cl_cart');
   currentScreen = 1;
   goScreen(1);
   document.getElementById('stepper').style.display = 'flex';
