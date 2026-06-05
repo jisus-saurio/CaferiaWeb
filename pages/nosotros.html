@@ -1,18 +1,29 @@
 <!doctype html>
 <html lang="es">
   <head>
+    <!-- Información básica del documento -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nosotros — Coffe Lawhore</title>
+
+    <!-- Preconexión a Google Fonts para cargar las tipografías más rápido -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <!-- Icono de la pestaña del navegador -->
     <link rel="shortcut icon" href="/img/logo.png" type="image/x-icon">
     <link rel="shortcut icon" href="../img/logo.png" type="image/x-icon">
+
+    <!-- Tipografías usadas en la página -->
     <link
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap"
       rel="stylesheet"
     >
+
+    <!-- Estilos generales y específicos para esta página -->
     <link rel="stylesheet" href="../CSS/style.css">
     <link rel="stylesheet" href="../CSS/nosotros.css">
+
+    <!-- Scripts que usan componentes personalizados y animaciones -->
     <script src="../js/components.js" defer></script>
     <script src="../js/nosotros.js" defer></script>
   </head>
@@ -42,7 +53,7 @@
         </div>
 
         <!-- Año decorativo, para dar contexto histórico -->
-          <div class="about-hero-year">2018</div>
+        <div class="about-hero-year">2018</div>
 
         <!-- Imagen representativa del hero (fallback manejado por onerror) -->
         <div class="about-hero-img">
@@ -57,31 +68,37 @@
 
     <main>
 
-      <!-- Main: sección 'Origen' — cuenta la historia y el origen de los granos -->
+      <!-- Sección 'Origen': historia y origen de los granos -->
       <section class="origin" id="origen" aria-labelledby="origen-heading">
         <div class="origin-inner">
           <div class="origin-img-col">
-              <figure class="origin-figure">
-                <img
-                  class="origin-img-main"
-                  src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=700&q=80"
-                  alt="Latte art"
-                  onerror="this.src='https://placehold.co/500x480/3d2e28/fdf8f0?text=☕'"
-                >
-                <figcaption class="sr-only">Latte art</figcaption>
-              </figure>
-              <figure class="origin-figure">
-                <img
-                  class="origin-img-secondary"
-                  src="https://images.unsplash.com/photo-1453614512568-c4024d13c247?w=400&q=80"
-                  alt="Granos de café"
-                  onerror="this.src='https://placehold.co/260x220/3d2e28/fdf8f0?text=☕'"
-                >
-                <figcaption class="sr-only">Granos de café</figcaption>
-              </figure>
+            <!-- Primera imagen destacada -->
+            <figure class="origin-figure">
+              <img
+                class="origin-img-main"
+                src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=700&q=80"
+                alt="Latte art"
+                onerror="this.src='https://placehold.co/500x480/3d2e28/fdf8f0?text=☕'"
+              >
+              <figcaption class="sr-only">Latte art</figcaption>
+            </figure>
+
+            <!-- Segunda imagen destacada -->
+            <figure class="origin-figure">
+              <img
+                class="origin-img-secondary"
+                src="https://images.unsplash.com/photo-1453614512568-c4024d13c247?w=400&q=80"
+                alt="Granos de café"
+                onerror="this.src='https://placehold.co/260x220/3d2e28/fdf8f0?text=☕'"
+              >
+              <figcaption class="sr-only">Granos de café</figcaption>
+            </figure>
+
+            <!-- Elemento decorativo para el diseño -->
             <div class="origin-img-deco"></div>
           </div>
 
+          <!-- Columna de texto con historia y datos -->
           <div class="origin-text-col">
             <span class="section-label">El comienzo</span>
             <h2 id="origen-heading">
@@ -110,12 +127,13 @@
 
       <!-- Valores: principios y propuestas que definen la marca -->
       <section class="values" id="valores" aria-labelledby="valores-heading">
-        <!-- Encabezado de la sección de valores -->
         <div class="values-header">
           <span class="section-label">Lo que nos mueve</span>
           <h2 id="valores-heading">Nuestros valores</h2>
           <p>Los principios que guían cada decisión, cada taza, cada día.</p>
         </div>
+
+        <!-- Lista de tarjetas con cada valor -->
         <div class="values-grid" role="list">
           <div class="value-card" data-num="01" role="listitem">
             <div class="value-icon">◆</div>
@@ -170,12 +188,13 @@
 
       <!-- Equipo: presentación del equipo humano detrás de la marca -->
       <section class="team" id="equipo" aria-labelledby="equipo-heading">
-        <!-- Cabecera de equipo y descripción breve -->
         <div class="team-header reveal">
           <span class="section-label">Las personas detrás de cada taza</span>
           <h2 id="equipo-heading">Nuestro equipo</h2>
           <p>Apasionados, creativos y siempre con ganas de sorprenderte.</p>
         </div>
+
+        <!-- Tarjetas de cada miembro del equipo -->
         <div class="team-grid" role="list">
           <div class="team-card" role="listitem">
             <div class="team-img-wrap">
@@ -185,7 +204,7 @@
                 onerror="this.src=''"
               >
             </div>
-            <div class="team-name">Mónica Ruiz. </div>
+            <div class="team-name">Mónica Ruiz.</div>
             <div class="team-role">Co-fundador & Head Barista</div>
             <p class="team-bio">14 años extrayendo el alma del espresso. Campeón regional de latte art 2022.</p>
           </div>
@@ -218,12 +237,13 @@
 
       <!-- Proceso: pasos clave del flujo desde la finca hasta la taza -->
       <section class="process" id="proceso" aria-labelledby="proceso-heading">
-        <!-- Encabezado del proceso y descripción -->
         <div class="process-header reveal">
           <span class="section-label">De la tierra a tu taza</span>
           <h2 id="proceso-heading">Nuestro proceso</h2>
           <p>Cada paso importa. Así garantizamos que lo que bebes sea excepcional.</p>
         </div>
+
+        <!-- Lista de pasos del proceso -->
         <div class="process-steps" role="list">
           <div class="process-step" role="listitem">
             <div class="step-dot">1</div>
@@ -269,7 +289,7 @@
       </section>
     </main>
 
-    <!-- Footer -->
+    <!-- Footer: pie de página reutilizable -->
     <site-footer role="contentinfo"></site-footer>
 
   </body>

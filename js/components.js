@@ -1,5 +1,8 @@
 /* ── Determina la raíz del sitio para armar las rutas ── */
 function rootPath() {
+  // El código calcula cuántos niveles de carpeta hay en la URL actual,
+  // pero aquí simplemente retorna la raíz del sitio como cadena vacía.
+  // Si tuvieras rutas más profundas, podrías usar "../" según el depth.
   const depth = window.location.pathname.split("/").filter(Boolean).length;
   return "";
 }
@@ -10,8 +13,10 @@ function rootPath() {
    ══════════════════════════════════════════════════════ */
 class NavBar extends HTMLElement {
   connectedCallback() {
+    // Lee el atributo page para saber cuál enlace está activo
     const currentPage = this.getAttribute("page") || "";
 
+    // Lista de enlaces que aparecerán en la barra de navegación
     const links = [
       { label: "Inicio",   href: "/index.html",    key: "inicio"   },
       { label: "Menú",     href: "/pages/productos.html",      key: "menu"     },
@@ -20,6 +25,7 @@ class NavBar extends HTMLElement {
       { label: "Carrito",  href: "/pages/Cart.html",   key: "carrito"  },
     ];
 
+    // Crea el HTML de cada enlace, agregando la clase activa si corresponde
     const liItems = links
       .map(
         ({ label, href, key }) =>
@@ -27,6 +33,7 @@ class NavBar extends HTMLElement {
       )
       .join("\n          ");
 
+    // Construye la barra de navegación principal y el menú móvil
     this.innerHTML = `
       <nav id="navPrincipal">
         <a href="/index.html" class="nav-logo">
@@ -148,10 +155,11 @@ class NavBar extends HTMLElement {
       </style>
     `;
 
-    /* ── Lógica de toggle ── */
+    /* ── Botón de hamburguesa y panel móvil ── */
     const btn    = this.querySelector(".nav-hamburger");
     const panel  = this.querySelector(".nav-mobile");
 
+    // Al dar clic en el botón se abre o cierra el menú móvil
     btn.addEventListener("click", () => {
       const isOpen = panel.classList.toggle("open");
       btn.classList.toggle("open", isOpen);
@@ -159,7 +167,7 @@ class NavBar extends HTMLElement {
       panel.setAttribute("aria-hidden", String(!isOpen));
     });
 
-    /* Cerrar al hacer click en un link del menú móvil */
+    // Al seleccionar un enlace del menú móvil, se cierra el panel
     panel.querySelectorAll("a").forEach(link => {
       link.addEventListener("click", () => {
         panel.classList.remove("open");
@@ -169,7 +177,7 @@ class NavBar extends HTMLElement {
       });
     });
 
-    /* Cerrar al hacer click fuera */
+    // Si el usuario hace clic fuera de la barra de navegación, cierra el menú móvil
     document.addEventListener("click", (e) => {
       if (!this.contains(e.target)) {
         panel.classList.remove("open");
@@ -179,7 +187,7 @@ class NavBar extends HTMLElement {
       }
     });
 
-    /* Scroll → sombra (igual que antes) */
+    // Cambia la clase cuando el usuario hace scroll para agregar una sombra
     const nav = this.querySelector("#navPrincipal");
     const onScroll = () => nav.classList.toggle("scrolled", window.scrollY > 10);
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -195,6 +203,7 @@ customElements.define("nav-bar", NavBar);
    ══════════════════════════════════════════════════════ */
 class SiteFooter extends HTMLElement {
   connectedCallback() {
+    // El pie de página se inserta en cada página donde se use <site-footer>
     this.innerHTML = `
       <footer>
         <div class="footer-grid">

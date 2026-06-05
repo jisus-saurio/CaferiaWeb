@@ -1,55 +1,65 @@
-// ── STATE ──────────────────────────────────────────────────────────
-let personCount = 2;
-let activeTab = 'reserva';
+// ── ESTADO GLOBAL ─────────────────────────────────────────────────────
+let personCount = 2;        // Cantidad de personas en la reserva
+let activeTab = 'reserva';  // Pestaña activa: 'reserva' o 'mensaje'
 
-// ── TABS ───────────────────────────────────────────────────────────
+// ── CAMBIO DE PESTAÑAS ──────────────────────────────────────────────────
 function switchTab(tab) {
   activeTab = tab;
   clearAllTooltips();
 
+  // Desactiva todas las pestañas y paneles
   document.querySelectorAll('.tab').forEach(el => {
     el.classList.remove('active');
     el.setAttribute('aria-selected', 'false');
   });
   document.querySelectorAll('.tab-panel').forEach(el => el.classList.remove('active'));
 
+  // Activa la pestaña y el panel seleccionados
   document.getElementById(`tab-${tab}`).classList.add('active');
   document.getElementById(`tab-${tab}`).setAttribute('aria-selected', 'true');
   document.getElementById(`panel-${tab}`).classList.add('active');
 }
 
-// ── PERSON COUNTER ──────────────────────────────────────────────────
+// ── CONTADOR DE PERSONAS ───────────────────────────────────────────────
 function changeCount(delta) {
+  // Ajusta el número entre 1 y 20 personas
   personCount = Math.max(1, Math.min(20, personCount + delta));
   document.getElementById('counterVal').textContent = personCount;
   document.getElementById('r-personas').value = personCount;
 }
 
-// ── PHONE: DIGITS ONLY, MAX 8 ────────────────────────────────────────
+// ── CONFIGURAR TELÉFONO: SOLO DÍGITOS Y MÁXIMO 8 ─────────────────────────
 (function setupPhone() {
   const tel = document.getElementById('r-telefono');
   if (!tel) return;
+
+  // Elimina cualquier carácter que no sea número y limita a 8 dígitos
   tel.addEventListener('input', function () {
     this.value = this.value.replace(/\D/g, '').substring(0, 8);
     clearTooltip(this);
   });
+
+  // Evita que se escriban letras u otros símbolos
   tel.addEventListener('keypress', function (e) {
     if (!/\d/.test(e.key)) e.preventDefault();
   });
 })();
 
-// ── DATE: MIN = TODAY ─────────────────────────────────────────────────
+// ── CONFIGURAR FECHA: MÍNIMO HOY ────────────────────────────────────────
 (function setupDate() {
   const dateInput = document.getElementById('r-fecha');
   if (!dateInput) return;
+
+  // El valor mínimo es la fecha de hoy para no permitir fechas pasadas
   const today = new Date().toISOString().split('T')[0];
   dateInput.min = today;
 })();
 
-// ── VALIDATION TOOLTIPS ────────────────────────────────────────────────
+// ── TOOLTIP DE VALIDACIÓN ───────────────────────────────────────────────
 function showTooltip(el, msg) {
   clearTooltip(el);
   el.classList.add('field-error');
+
   const tip = document.createElement('div');
   tip.className = 'validation-tooltip';
   tip.innerHTML = `<span class="tooltip-icon">!</span>${msg}`;
@@ -67,7 +77,7 @@ function clearAllTooltips() {
   document.querySelectorAll('.field-error').forEach(el => el.classList.remove('field-error'));
 }
 
-// ── VALIDATE RESERVA ──────────────────────────────────────────────────
+// ── VALIDAR FORMULARIO DE RESERVA ──────────────────────────────────────
 function validateReserva() {
   const fields = [
     { id: 'r-nombre',    msg: 'Ingresa tu nombre' },
@@ -91,7 +101,7 @@ function validateReserva() {
     }
   });
 
-  // Email format
+  // Validación básica del correo electrónico
   const emailEl = document.getElementById('r-email');
   if (emailEl.value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value.trim())) {
     showTooltip(emailEl, 'Ingresa un correo válido');
@@ -99,7 +109,7 @@ function validateReserva() {
     ok = false;
   }
 
-  // Phone
+  // Validación del teléfono: debe tener exactamente 8 dígitos
   const tel = document.getElementById('r-telefono');
   const telVal = tel.value.trim();
   if (!telVal) {
@@ -118,7 +128,7 @@ function validateReserva() {
   return ok;
 }
 
-// ── VALIDATE MENSAJE ──────────────────────────────────────────────────
+// ── VALIDAR FORMULARIO DE MENSAJE ──────────────────────────────────────
 function validateMensaje() {
   const fields = [
     { id: 'm-nombre',  msg: 'Ingresa tu nombre' },
@@ -141,7 +151,6 @@ function validateMensaje() {
     }
   });
 
-  // Email format
   const emailEl = document.getElementById('m-email');
   if (emailEl.value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value.trim())) {
     showTooltip(emailEl, 'Ingresa un correo válido');
@@ -153,7 +162,7 @@ function validateMensaje() {
   return ok;
 }
 
-// ── FORM SUBMIT ────────────────────────────────────────────────────────
+// ── ENVÍO DEL FORMULARIO ──────────────────────────────────────────────
 document.getElementById('contactForm').addEventListener('submit', function (e) {
   e.preventDefault();
   clearAllTooltips();
@@ -161,7 +170,7 @@ document.getElementById('contactForm').addEventListener('submit', function (e) {
   const valid = activeTab === 'reserva' ? validateReserva() : validateMensaje();
   if (!valid) return;
 
-  // Simulate async send
+  // Simula un envío asincrónico y muestra una pantalla de éxito
   const btn = document.getElementById('btnSubmit');
   const btnText = document.getElementById('btnText');
   const btnIcon = document.getElementById('btnIcon');
@@ -176,7 +185,7 @@ document.getElementById('contactForm').addEventListener('submit', function (e) {
   }, 1400);
 });
 
-// ── RESET FORM ─────────────────────────────────────────────────────────
+// ── REINICIAR FORMULARIO ──────────────────────────────────────────────
 function resetForm() {
   document.getElementById('contactForm').reset();
   document.getElementById('contactForm').style.display = 'block';
@@ -198,7 +207,7 @@ function resetForm() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// ── CLEAR TOOLTIP ON CHANGE ────────────────────────────────────────────
+// ── LIMPIAR TOOLTIP AL CAMBIAR DATOS ───────────────────────────────────–
 document.querySelectorAll('input, select, textarea').forEach(el => {
   el.addEventListener('input', () => clearTooltip(el));
   el.addEventListener('change', () => clearTooltip(el));

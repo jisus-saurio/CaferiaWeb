@@ -1,17 +1,22 @@
 <!doctype html>
 <html lang="es">
 <head>
+  <!-- Información básica de la página -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Carrito — Coffe Lawhore</title>
+
+  <!-- Conexión a Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="shortcut icon" href="/img/logo.png" type="image/x-icon">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Estilos específicos del carrito -->
   <link rel="stylesheet" href="/CSS/Cart.css">
 </head>
 <body>
 
-<!-- STEPPER -->
+<!-- Indicador del paso actual del proceso de compra -->
 <div class="stepper" id="stepper">
   <div class="step active" id="st1">
     <div class="step-num">1</div>
@@ -30,7 +35,7 @@
 </div>
 
 <!-- ══════════════════════════════════════
-     SCREEN 1 — CARRITO
+     PANTALLA 1 — CARRITO
 ══════════════════════════════════════ -->
 <div class="screen active" id="screen1">
   <div class="container">
@@ -39,8 +44,10 @@
       Tu carrito
     </div>
 
+    <!-- Aquí se insertan los productos que tienes en el carrito -->
     <div class="cart-box" id="cartItemsBox"></div>
 
+    <!-- Resumen de precios del carrito -->
     <div class="totals">
       <div class="totals-row">
         <span>Subtotal</span>
@@ -56,6 +63,7 @@
       </div>
     </div>
 
+    <!-- Botones para regresar o avanzar en el proceso -->
     <div class="actions">
       <button class="btn-back" onclick="goBack()">← Regresar al catálogo</button>
       <button class="btn-main" onclick="goScreen(2)">Continuar compra →</button>
@@ -64,7 +72,7 @@
 </div>
 
 <!-- ══════════════════════════════════════
-     SCREEN 2 — ENVÍO
+     PANTALLA 2 — ENVÍO
 ══════════════════════════════════════ -->
 <div class="screen" id="screen2">
   <div class="container">
@@ -74,11 +82,14 @@
     </div>
 
     <div class="two-col">
+      <!-- Formulario para los datos de envío -->
       <div class="form-card">
         <div class="country-row">
           <span class="country-label">País</span>
           <span class="country-val">El Salvador</span>
         </div>
+
+        <!-- Selección de departamento y municipio -->
         <div class="field-group">
           <div class="field">
             <label>Departamento <span class="req">*</span></label>
@@ -98,18 +109,24 @@
             <input type="text" id="municipio" placeholder="Ej. Soyapango">
           </div>
         </div>
+
+        <!-- Dirección de entrega completa -->
         <div class="field-group full" style="margin-bottom:14px">
           <div class="field">
             <label>Dirección de entrega <span class="req">*</span></label>
             <input type="text" id="direccion" placeholder="Calle, colonia, número">
           </div>
         </div>
+
+        <!-- Punto de referencia opcional -->
         <div class="field-group full" style="margin-bottom:14px">
           <div class="field">
             <label>Punto de referencia</label>
             <input type="text" id="referencia" placeholder="Frente al parque, cerca de…">
           </div>
         </div>
+
+        <!-- Datos personales para la entrega -->
         <div class="field-group">
           <div class="field">
             <label>Nombre <span class="req">*</span></label>
@@ -120,22 +137,29 @@
             <input type="text" id="apellidos" placeholder="Tus apellidos">
           </div>
         </div>
+
+        <!-- Teléfono de contacto -->
         <div class="field-group full" style="margin-bottom:0">
           <div class="field">
             <label>Teléfono de contacto <span class="req">*</span></label>
             <input type="tel" id="telefono" placeholder="7000-0000">
           </div>
         </div>
+
+        <!-- Nota importante sobre el envío -->
         <p class="field-note" style="margin-top:16px">
           📦 Las entregas son realizadas por encomiendas. Nos comunicaremos contigo sobre los detalles de tu envío.
         </p>
+
+        <!-- Botón para validar el envío y avanzar al pago -->
         <button class="btn-main" style="margin-top:20px;width:100%" onclick="validateShipping()">Continuar a pago →</button>
       </div>
 
-      <!-- Sidebar -->
+      <!-- Resumen de pedido en la segunda pantalla -->
       <div class="summary-card" id="summaryS2"></div>
     </div>
 
+    <!-- Botón para volver a la pantalla del carrito -->
     <div class="actions" style="margin-top:20px">
       <button class="btn-back" onclick="goScreen(1)">← Regresar al carrito</button>
     </div>
@@ -143,7 +167,7 @@
 </div>
 
 <!-- ══════════════════════════════════════
-     SCREEN 3 — PAGO
+     PANTALLA 3 — PAGO
 ══════════════════════════════════════ -->
 <div class="screen" id="screen3">
   <div class="container">
@@ -154,12 +178,13 @@
 
     <div class="two-col">
       <div class="form-card">
+        <!-- Botones para seleccionar el método de pago -->
         <div class="pay-toggle">
           <button class="pay-tab active" id="tabCard" onclick="setPayTab('card')">Tarjeta</button>
           <button class="pay-tab" id="tabCash" onclick="setPayTab('cash')">Efectivo</button>
         </div>
 
-        <!-- Panel Tarjeta -->
+        <!-- Panel de pago con tarjeta -->
         <div class="pay-panel active" id="panelCard">
           <div class="card-layout">
             <div class="credit-card">
@@ -198,7 +223,7 @@
           </div>
         </div>
 
-        <!-- Panel Efectivo -->
+        <!-- Panel de pago en efectivo -->
         <div class="pay-panel" id="panelCash">
           <div class="cash-msg">
             <div class="cash-icon">💵</div>
@@ -206,12 +231,15 @@
           </div>
         </div>
 
+        <!-- Botón final para concluir la compra -->
         <button class="btn-main" style="margin-top:24px;width:100%" onclick="finalizarCompra()">Finalizar pedido ✓</button>
       </div>
 
+      <!-- Resumen de pedido en la tercera pantalla -->
       <div class="summary-card" id="summaryS3"></div>
     </div>
 
+    <!-- Botón para regresar al formulario de envío -->
     <div class="actions" style="margin-top:20px">
       <button class="btn-back" onclick="goScreen(2)">← Regresar a envío</button>
     </div>
@@ -219,7 +247,7 @@
 </div>
 
 <!-- ══════════════════════════════════════
-     SCREEN 4 — CONFIRMACIÓN
+     PANTALLA 4 — CONFIRMACIÓN
 ══════════════════════════════════════ -->
 <div class="screen" id="screen4">
   <div class="container">
@@ -229,15 +257,19 @@
       <p class="success-sub">
         Tu orden está en camino. Nos pondremos en contacto contigo para coordinar la entrega. ¡Gracias por elegir Coffe Lawhore!
       </p>
+
+      <!-- Muestra el número de pedido generado -->
       <div class="success-order">
         <div class="success-order-label">Número de pedido</div>
         <div class="success-order-num" id="orderNum">#CL-000000</div>
       </div>
+
       <button class="btn-main" onclick="resetCart()">Volver al catálogo</button>
     </div>
   </div>
 </div>
 
+<!-- Script que maneja la lógica del carrito, envío y pago -->
 <script src="/js/Cart.js"></script>
 </body>
 </html>

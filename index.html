@@ -1,29 +1,42 @@
 <!doctype html>
 <html lang="es">
   <head>
+    <!-- Información básica de la página -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coffe Lawhore</title>
+
+    <!-- Conexión rápida a Google Fonts para cargar tipografías -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <!-- Icono de la pestaña del navegador -->
     <link rel="shortcut icon" href="/img/logo.png" type="image/x-icon">
+
+    <!-- Tipografías que usará la página -->
     <link
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap"
       rel="stylesheet"
     >
+
+    <!-- Estilos principales de la página -->
     <link rel="stylesheet" href="/CSS/style.css">
+
+    <!-- Script para componentes personalizados sin bloquear la carga inicial -->
     <script src="/js/components.js" defer></script>
   </head>
   <body>
-    <!-- Cabecera -->
+    <!-- Cabecera principal de la página -->
     <header>
+      <!-- Componente de navegación personalizado -->
       <nav-bar page="inicio"></nav-bar>
 
-      <!-- Hero / Sección destacada -->
+      <!-- Hero / Sección destacada con carrusel de imágenes -->
       <section class="heroe" id="inicio" aria-label="Hero">
+        <!-- Fondo del hero, puede cambiar según el slide activo -->
         <div class="hero-bg slide-0" id="heroBg"></div>
 
         <div class="slides-wrapper">
-          <!-- Slide 1 -->
+          <!-- Slide 1: primera diapositiva del carrusel -->
           <div class="slide active" id="slide-0" style="background-image: url('/img/img2.png');">
             <div class="slide-text">
               <div class="slide-eyebrow">Bienvenido a tu ritual diario</div>
@@ -35,13 +48,14 @@
                 destacar, como tú.
               </p>
               <div class="slide-actions">
+                <!-- Botones que llevan a otras páginas -->
                 <a class="btn-primary" href="/pages/Contact.html">Contactanos</a>
                 <a class="btn-outline" href="/pages/productos.html">Ver menú</a>
               </div>
             </div>
           </div>
 
-          <!-- Slide 2 -->
+          <!-- Slide 2: segunda diapositiva del carrusel -->
           <div class="slide" id="slide-1" style="background-image: url('/img/img1.png');">
             <div class="slide-text">
               <div class="slide-eyebrow">Especialidad de la casa</div>
@@ -59,7 +73,7 @@
             </div>
           </div>
 
-          <!-- Slide 3 -->
+          <!-- Slide 3: tercera diapositiva del carrusel -->
           <div class="slide" id="slide-2" style="background-image: url('/img/img3.png');">
             <div class="slide-text">
               <div class="slide-eyebrow">Refrescante e irresistible</div>
@@ -78,13 +92,14 @@
           </div>
         </div>
 
-        <!-- Puntos y flechas -->
+        <!-- Puntos que muestran el slide activo -->
         <div class="carousel-dots" id="carouselDots">
           <div class="dot active" data-slide="0"></div>
           <div class="dot" data-slide="1"></div>
           <div class="dot" data-slide="2"></div>
         </div>
 
+        <!-- Flechas para navegar entre slides -->
         <div class="carousel-arrows">
           <button class="arrow-btn" id="prevBtn">&#8592;</button>
           <button class="arrow-btn" id="nextBtn">&#8594;</button>
@@ -92,9 +107,9 @@
       </section>
     </header>
 
-    <!-- Contenido principal -->
+    <!-- Contenido principal de la página -->
     <main>
-      <!-- Selecciones destacadas -->
+      <!-- Sección de productos destacados -->
       <section class="featured" id="menu" aria-labelledby="featured-heading">
         <div class="featured-header">
           <span class="section-label">Los sabores que nos definen</span>
@@ -102,6 +117,7 @@
           <p>Elaborados a mano con cariño, servidos con amor.</p>
         </div>
 
+        <!-- Cuadrícula de cartas con bebidas -->
         <div class="drinks-grid">
           <article class="drink-card">
             <div class="drink-card-img-wrapper">
@@ -170,19 +186,18 @@
         </div>
       </section>
 
-      <!-- Nosotros -->
+      <!-- Sección "Nosotros" con información sobre la marca -->
       <section class="about" id="nosotros" aria-labelledby="nosotros-heading">
 
-        <!-- Título centrado arriba -->
         <div class="about-header fade-up">
           <span class="section-label">Quiénes somos</span>
           <h2 id="nosotros-heading">Coffe Lawhore <em>es</em></h2>
         </div>
 
-        <!-- Layout: columna izquierda imagen central columna derecha -->
+        <!-- Contenedor dividido en tres partes: izquierda, centro y derecha -->
         <div class="about-split">
 
-          <!-- Columna izquierda: features -->
+          <!-- Columna izquierda con características clave -->
           <div class="about-features-col">
             <div class="about-feature fade-up">
               <span class="feature-num">1</span>
@@ -200,9 +215,10 @@
             </div>
           </div>
 
-          <!-- Carrusel central con 3 bebidas -->
+          <!-- Centro con un pequeño carrusel de bebidas -->
           <div class="about-center-img fade-up">
             <div class="about-carousel">
+              <!-- Imagen anterior -->
               <div class="about-drink about-drink--prev">
                 <img
                   src="https://muffinbreak.com.au/wp-content/uploads/2020/11/55_COFFEE-FRAPPE-3_4-03_Retouch.png"
@@ -211,6 +227,7 @@
                 >
               </div>
 
+              <!-- Imagen activa -->
               <div class="about-drink about-drink--active">
                 <img
                   src="https://frappeartesanal.com/wp-content/uploads/2024/12/Rom-Ferrero-Rocher.png"
@@ -219,6 +236,7 @@
                 >
               </div>
 
+              <!-- Imagen siguiente -->
               <div class="about-drink about-drink--next">
                 <img
                   src="https://static.vecteezy.com/system/resources/thumbnails/053/652/174/small/iced-chocolate-drink-whipped-cream-chocolate-drizzle-cold-beverage-png.png"
@@ -227,12 +245,12 @@
                 >
               </div>
 
-              <!-- Flechas -->
+              <!-- Botones para mover el carrusel -->
               <button class="about-arrow about-arrow--left" id="aboutPrev">&#8592;</button>
               <button class="about-arrow about-arrow--right" id="aboutNext">&#8594;</button>
             </div>
 
-            <!-- Puntos -->
+            <!-- Indicadores de puntos para el carrusel -->
             <div class="about-dots">
               <span class="about-dot active" data-i="0"></span>
               <span class="about-dot" data-i="1"></span>
@@ -242,7 +260,7 @@
             <a href="/pages/menu.html" class="btn-about-order">Ver menú</a>
           </div>
 
-          <!-- Columna derecha: features -->
+          <!-- Columna derecha con más características -->
           <div class="about-features-col right">
             <div class="about-feature fade-up">
               <span class="feature-num">3</span>
@@ -263,7 +281,7 @@
         </div>
       </section>
 
-      <!-- Contacto -->
+      <!-- Sección para captar suscriptores o clientes interesados -->
       <section class="join" id="contacto" aria-labelledby="join-heading">
         <div class="join-inner fade-up">
           <span class="section-label light">Únete</span>
@@ -273,6 +291,7 @@
             clubes de lectura dominicales. El café sabe mejor compartido.
           </p>
           <div class="join-form">
+            <!-- Campo para escribir el correo electrónico -->
             <input
               type="email"
               class="join-input"
@@ -284,21 +303,26 @@
       </section>
     </main>
 
-    <!-- Footer reutilizable -->
-   
-      <site-footer></site-footer>
+    <!-- Footer reutilizable que viene de otro componente -->
+    <site-footer></site-footer>
 
-    <!-- Script carrusel nosotros -->
+    <!-- Script que controla el carrusel de la sección "Nosotros" -->
     <script>
       (function () {
+        // Imágenes que se muestran en el carrusel
         const drinks = [
           "https://muffinbreak.com.au/wp-content/uploads/2020/11/55_COFFEE-FRAPPE-3_4-03_Retouch.png",
           "https://frappeartesanal.com/wp-content/uploads/2024/12/Rom-Ferrero-Rocher.png",
           "https://static.vecteezy.com/system/resources/thumbnails/053/652/174/small/iced-chocolate-drink-whipped-cream-chocolate-drizzle-cold-beverage-png.png"
         ];
+
+        // Texto alternativo para cada imagen, para accesibilidad
         const alts = ["Latte Caramelizado", "Mocha Capricho", "Frappe con Chispas"];
+
+        // Índice del elemento actualmente visible
         let current = 0;
 
+        // Seleccionar imágenes y botones del DOM
         const prev  = document.querySelector(".about-drink--prev img");
         const active= document.querySelector(".about-drink--active img");
         const next  = document.querySelector(".about-drink--next img");
@@ -306,33 +330,40 @@
         const btnL  = document.getElementById("aboutPrev");
         const btnR  = document.getElementById("aboutNext");
 
+        // Calcula el índice correcto cuando se pasa del último al primero o del primero al último
         function idx(n) { return (n + drinks.length) % drinks.length; }
 
         function update() {
-          // Añadir clase de animación
+          // Añadir y quitar clase para la animación de transición
           const activeWrap = document.querySelector(".about-drink--active");
           activeWrap.classList.add("about-drink--transition");
           setTimeout(() => activeWrap.classList.remove("about-drink--transition"), 400);
 
+          // Actualiza las imágenes y los textos alternativos
           prev.src   = drinks[idx(current - 1)];
           prev.alt   = alts[idx(current - 1)];
           active.src = drinks[current];
           active.alt = alts[current];
           next.src   = drinks[idx(current + 1)];
           next.alt   = alts[idx(current + 1)];
+
+          // Marca el punto activo correspondiente
           dots.forEach((d, i) => d.classList.toggle("active", i === current));
         }
 
+        // Eventos para cambiar el slide con las flechas
         btnL.addEventListener("click", () => { current = idx(current - 1); update(); });
         btnR.addEventListener("click", () => { current = idx(current + 1); update(); });
+
+        // Evento para cambiar el slide al hacer click en los puntos
         dots.forEach(d => d.addEventListener("click", () => { current = +d.dataset.i; update(); }));
 
-        // Auto-play
+        // Cambia de slide automáticamente cada 3.5 segundos
         setInterval(() => { current = idx(current + 1); update(); }, 3500);
       })();
     </script>
 
-    <!-- Script principal -->
+    <!-- Script principal de la página -->
     <script src="/js/main.js"></script>
   </body>
 </html>

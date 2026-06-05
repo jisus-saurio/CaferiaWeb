@@ -1,13 +1,21 @@
-// ── STATE ──────────────────────────────────────────────────────────
-const SHIPPING = 3.50;
-let cart = (function() {
-  try { return JSON.parse(localStorage.getItem('cl_cart') || '[]'); } catch { return []; }
-})();
-let currentScreen = 1;
-let activePayTab = 'card';
+// ── ESTADO INICIAL ───────────────────────────────────────────────────
+const SHIPPING = 3.50; // Costo fijo de envío
 
-// ── TOOLTIP VALIDATION ─────────────────────────────────────────────
+// Carga el carrito desde localStorage o usa un arreglo vacío si no existe
+let cart = (function() {
+  try {
+    return JSON.parse(localStorage.getItem('cl_cart') || '[]');
+  } catch {
+    return [];
+  }
+})();
+
+let currentScreen = 1;          // Pantalla actual del proceso de compra
+let activePayTab = 'card';      // Método de pago activo: 'card' o 'cash'
+
+// ── MENSAJES DE ERROR EN CAMPOS ──────────────────────────────────────
 function showTooltip(el, msg) {
+  // Muestra un mensaje de error junto al campo
   clearTooltip(el);
   el.classList.add('field-error');
   const tip = document.createElement('div');
@@ -17,24 +25,30 @@ function showTooltip(el, msg) {
 }
 
 function clearTooltip(el) {
+  // Elimina el borde de error y el tooltip anterior si existe
   el.classList.remove('field-error');
   const existing = el.parentNode.querySelector('.validation-tooltip');
   if (existing) existing.remove();
 }
 
 function clearAllTooltips() {
+  // Limpia todos los tooltips y clases de error de la página
   document.querySelectorAll('.validation-tooltip').forEach(t => t.remove());
   document.querySelectorAll('.field-error').forEach(el => el.classList.remove('field-error'));
 }
 
-// ── RENDER CART ────────────────────────────────────────────────────
+// ── DIBUJAR CARRITO EN PANTALLA ─────────────────────────────────────
 function renderCart() {
   const box = document.getElementById('cartItemsBox');
+
+  // Si el carrito está vacío, muestra un mensaje simple
   if (!cart.length) {
     box.innerHTML = `<div class="empty-cart"><div class="empty-cart-icon">🛒</div><p class="empty-cart-msg">Tu carrito está vacío.</p></div>`;
     updateTotals();
     return;
   }
+
+  // Construye la tabla y cada producto del carrito
   box.innerHTML = `
     <div style="display:grid;grid-template-columns:80px 1fr 100px 130px 100px 110px;gap:12px;
       padding:12px 24px;border-bottom:1px solid var(--beige);font-size:11px;font-weight:600;
@@ -78,10 +92,12 @@ function renderCart() {
       </div>
     `).join('')}
   `;
+
   updateTotals();
 }
 
 function updateTotals() {
+  // Calcula subtotal y total incluyendo envío
   const sub = cart.reduce((a, i) => a + i.price * i.qty, 0);
   const total = sub + (cart.length ? SHIPPING : 0);
   document.getElementById('s1-subtotal').textContent = `$${sub.toFixed(2)}`;
@@ -89,6 +105,7 @@ function updateTotals() {
 }
 
 function changeQty(id, delta) {
+  // Cambia la cantidad de un producto y actualiza el carrito
   const item = cart.find(i => i.id === id);
   if (!item) return;
   item.qty = Math.max(1, item.qty + delta);
@@ -98,14 +115,16 @@ function changeQty(id, delta) {
 }
 
 function removeItem(id) {
+  // Elimina un producto del carrito
   cart = cart.filter(i => i.id !== id);
   localStorage.setItem('cl_cart', JSON.stringify(cart));
   renderCart();
   if (currentScreen >= 2) renderSummary();
 }
 
-// ── SUMMARY SIDEBAR ────────────────────────────────────────────────
+// ── RESUMEN LATERAL ─────────────────────────────────────────────────
 function renderSummary() {
+  // Muestra un resumen compacto del carrito en paneles laterales
   const sub   = cart.reduce((a, i) => a + i.price * i.qty, 0);
   const total = sub + SHIPPING;
   const html  = `
@@ -128,13 +147,14 @@ function renderSummary() {
       <div class="summary-row total"><span>TOTAL</span><span class="orange">$${total.toFixed(2)}</span></div>
     </div>
   `;
+
   ['summaryS2','summaryS3'].forEach(id => {
     const el = document.getElementById(id);
     if (el) el.innerHTML = html;
   });
 }
 
-// ── NAVIGATION ────────────────────────────────────────────────────
+// ── NAVEGACIÓN ENTRE PANTALLAS ──────────────────────────────────────
 function goScreen(n) {
   document.getElementById(`screen${currentScreen}`).classList.remove('active');
   document.getElementById(`screen${n}`).classList.add('active');
@@ -146,6 +166,7 @@ function goScreen(n) {
 }
 
 function updateStepper(n) {
+  // Actualiza el stepper visual según la pantalla actual
   document.getElementById('stepper').style.display = n === 4 ? 'none' : 'flex';
   [1,2,3].forEach(i => {
     const el = document.getElementById(`st${i}`);
@@ -159,10 +180,11 @@ function updateStepper(n) {
 }
 
 function goBack() {
+  // Si se presiona volver, el navegador regresa a la página anterior
   window.history.back();
 }
 
-// ── SHIPPING VALIDATION ───────────────────────────────────────────
+// ── VALIDAR DATOS DE ENVÍO ──────────────────────────────────────────
 function validateShipping() {
   clearAllTooltips();
   let firstError = null;
@@ -187,7 +209,7 @@ function validateShipping() {
     }
   });
 
-  // Phone: required + digits only + exactly 8 digits
+  // Validación del teléfono de contacto
   const tel = document.getElementById('telefono');
   const telVal = tel.value.trim();
   if (!telVal) {
@@ -210,26 +232,32 @@ function validateShipping() {
     if (firstError) firstError.focus();
     return;
   }
+
+  // Si todo es válido, pasa a la pantalla de pago
   goScreen(3);
 }
 
-// ── PHONE INPUT: only allow digits ───────────────────────────────
+// ── CONFIGURAR EL INPUT DEL TELÉFONO ───────────────────────────────
 function setupPhoneInput() {
   const tel = document.getElementById('telefono');
   if (!tel) return;
+
+  // Permite solo dígitos y corta a 8 caracteres
   tel.addEventListener('input', function() {
-    const pos = this.selectionStart;
     const clean = this.value.replace(/\D/g, '').substring(0, 8);
     this.value = clean;
     clearTooltip(this);
   });
+
+  // Evita escribir letras en el campo
   tel.addEventListener('keypress', function(e) {
     if (!/\d/.test(e.key)) e.preventDefault();
   });
 }
 
-// ── PAYMENT ───────────────────────────────────────────────────────
+// ── MÉTODO DE PAGO ──────────────────────────────────────────────────
 function setPayTab(tab) {
+  // Cambia entre pago con tarjeta y pago en efectivo
   activePayTab = tab;
   document.getElementById('tabCard').classList.toggle('active', tab === 'card');
   document.getElementById('tabCash').classList.toggle('active', tab === 'cash');
@@ -238,6 +266,7 @@ function setPayTab(tab) {
 }
 
 function formatCC(input) {
+  // Formatea el número de tarjeta en bloques de 4 dígitos
   let v = input.value.replace(/\D/g,'').substring(0,16);
   input.value = v.replace(/(.{4})/g,'$1 ').trim();
   const raw = v.replace(/\D/g,'');
@@ -246,16 +275,18 @@ function formatCC(input) {
 }
 
 function formatExp(input) {
+  // Formatea la fecha de vencimiento como MM/AA
   let v = input.value.replace(/\D/g,'');
   if (v.length >= 3) v = v.slice(0,2) + '/' + v.slice(2,4);
   input.value = v;
   document.getElementById('ccExpDisplay').textContent = input.value || 'MM/AA';
 }
 
-// Card holder name: no numbers allowed
 function setupCardNameInput() {
   const ccName = document.getElementById('ccName');
   if (!ccName) return;
+
+  // Evita que el nombre del titular contenga números
   ccName.addEventListener('input', function() {
     const clean = this.value.replace(/[0-9]/g, '');
     if (this.value !== clean) {
@@ -272,6 +303,7 @@ function setupCardNameInput() {
 }
 
 function finalizarCompra() {
+  // Verifica que los datos de pago estén completos antes de finalizar
   clearAllTooltips();
   if (activePayTab === 'card') {
     let ok = true;
@@ -295,7 +327,6 @@ function finalizarCompra() {
       }
     });
 
-    // Extra: card name must have no numbers (redundant but safety net)
     const ccName = document.getElementById('ccName');
     if (ccName.value.trim() && /[0-9]/.test(ccName.value)) {
       showTooltip(ccName, 'El nombre no puede contener números');
@@ -308,12 +339,15 @@ function finalizarCompra() {
       return;
     }
   }
-  const num = '#CL-' + Math.floor(100000 + Math.random()*900000);
+
+  // Genera un número de pedido ficticio y muestra la pantalla de confirmación
+  const num = '#CL-' + Math.floor(100000 + Math.random() * 900000);
   document.getElementById('orderNum').textContent = num;
   goScreen(4);
 }
 
 function resetCart() {
+  // Reinicia el carrito y regresa a la primera pantalla
   cart = [];
   localStorage.removeItem('cl_cart');
   currentScreen = 1;
@@ -321,13 +355,15 @@ function resetCart() {
   document.getElementById('stepper').style.display = 'flex';
 }
 
-// ── INIT ──────────────────────────────────────────────────────────
+// ── INICIALIZACIÓN ──────────────────────────────────────────────────
 renderCart();
-// Setup inputs after DOM is ready
+
+// Asegura que los inputs estén configurados cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', function() {
   setupPhoneInput();
   setupCardNameInput();
 });
-// Also try immediately (if script runs after DOM)
+
+// También intenta configurar los inputs si el script ya se cargó después del DOM
 setupPhoneInput();
 setupCardNameInput();

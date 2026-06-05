@@ -1,4 +1,23 @@
-/* ── Variables heredadas ── */
+/* ══════════════════════════════════════════════════════════
+   NOSOTROS.CSS — CON COMENTARIOS PARA PRINCIPIANTES
+
+   Este archivo da estilo a la página "Nosotros" / "About us".
+   Las secciones que contiene son:
+     1. Navegación fija
+     2. Hero (portada grande)
+     3. Origen (historia de la empresa)
+     4. Valores (tarjetas con los valores)
+     5. Equipo (fotos del equipo)
+     6. Proceso (timeline horizontal)
+     7. CTA final (llamada a la acción)
+     8. Footer (pie de página)
+   ══════════════════════════════════════════════════════════ */
+
+
+/* ── VARIABLES CSS ─────────────────────────────────────────
+   Las mismas variables de colores y fuentes que en las otras páginas.
+   Tener las mismas variables en todos los archivos asegura consistencia visual.
+────────────────────────────────────────────────────────────── */
 :root {
   --green-deep:   #5a9e6f;
   --green-light:  #a8d4b0;
@@ -15,165 +34,222 @@
   --nav-h:        68px;
 }
 
-/* ── Reset base ── */
+/* ── RESET y BASE ─────────────────────────────────────────── */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html  { scroll-behavior: smooth; }
+html  { scroll-behavior: smooth; }  /* El scroll entre secciones es suave, no instantáneo */
 body  { font-family: var(--font-body); background: var(--cream); color: var(--text-dark); overflow-x: hidden; }
+/* overflow-x: hidden → evita que aparezca scroll horizontal por errores de layout */
 
-/* ── Nav (igual que index) ── */
+
+/* ══════════════════════════════════════
+   NAVEGACIÓN FIJA
+   ══════════════════════════════════════ */
 nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-  height: var(--nav-h); padding: 0 60px;
-  display: flex; align-items: center; justify-content: space-between;
-  background: rgba(253,248,240,0.92); backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(158,123,106,0.15); transition: box-shadow 0.3s;
+  position: fixed;    /* Se queda fija aunque scrollees → siempre visible */
+  top: 0; left: 0; right: 0;
+  z-index: 1000;      /* Por encima de todo el resto de la página */
+  height: var(--nav-h);
+  padding: 0 60px;    /* Espaciado interno lateral */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;  /* Logo a la izquierda, links a la derecha */
+  background: rgba(253,248,240,0.92);  /* Fondo crema con 8% de transparencia */
+  backdrop-filter: blur(12px);  /* Efecto de desenfoque del contenido detrás del nav */
+  border-bottom: 1px solid rgba(158,123,106,0.15);
+  transition: box-shadow 0.3s;
 }
+
+/* Cuando el usuario scrollea, aparece una sombra */
 nav.scrolled { box-shadow: 0 2px 20px rgba(58,46,40,0.08); }
+
+/* Logo (imagen + texto) */
 .nav-logo { display: flex; align-items: center; gap: 14px; text-decoration: none; }
 .nav-logo-img { width: 44px; height: 44px; object-fit: contain; border-radius: 12px; background: var(--cream); padding: 6px; box-shadow: 0 10px 25px rgba(58,46,40,0.08); flex-shrink: 0; }
 .nav-logo-text { font-family: var(--font-display); color: var(--text-dark); font-size: 1rem; font-weight: 700; line-height: 1.1; }
+
+/* Lista de links del menú */
 .nav-links { display: flex; gap: 36px; list-style: none; }
 .nav-links a { color: var(--text-mid); text-decoration: none; font-size: 0.85rem; letter-spacing: 0.03em; transition: color 0.2s; }
 .nav-links a:hover, .nav-links a.nav-active { color: var(--green-deep); }
+
+/* Etiqueta pequeña decorativa (ej: "NUESTRA HISTORIA") */
 .section-label { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--green-deep); margin-bottom: 12px; display: block; }
 
-/* ════════════════════════════════════════
-   HERO DE NOSOTROS
-════════════════════════════════════════ */
+
+/* ══════════════════════════════════════
+   HERO — La portada grande de la página
+   ══════════════════════════════════════ */
 .about-hero {
-  min-height: 62vh;
+  min-height: 62vh;   /* Al menos el 62% de la altura de la ventana */
   background: linear-gradient(160deg, #2a3d2a 0%, #3d2e28 55%, #1e2e1e 100%);
+  /* Degradado oscuro verde-café que simula una fotografía oscurecida */
   display: flex; align-items: flex-end; justify-content: flex-start;
+  /* Contenido alineado abajo-izquierda */
   padding: calc(var(--nav-h) + 80px) 80px 80px;
+  /* Padding top: altura del nav + 80px para que el texto no quede bajo el nav */
   position: relative; overflow: hidden;
 }
 
-/* Textura de grano sutil */
+/* Textura de grano sutil usando SVG inline (data URI) */
 .about-hero::before {
-  content: "";
+  content: "";           /* Elemento vacío solo visual */
   position: absolute; inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-  pointer-events: none; z-index: 0;
+  background-image: url("data:image/svg+xml,...");
+  /* data:image/svg+xml es una imagen SVG codificada directamente en el CSS
+     sin necesidad de un archivo externo. Aquí crea un ruido/grano visual. */
+  pointer-events: none;  /* El mouse lo ignora */
+  z-index: 0;
 }
 
-/* Línea decorativa diagonal */
+/* Forma diagonal decorativa en la parte inferior */
 .about-hero::after {
   content: "";
   position: absolute; right: 0; bottom: -2px;
   width: 100%; height: 80px;
   background: var(--cream);
   clip-path: polygon(60% 100%, 100% 0%, 100% 100%);
+  /* clip-path: recorta el elemento con una forma. polygon() define puntos.
+     Esto crea un triángulo en la esquina inferior derecha en color crema,
+     dando una transición diagonal hacia la siguiente sección. */
   z-index: 1;
 }
 
 .about-hero-content { position: relative; z-index: 2; max-width: 640px; }
 
+/* Texto pequeño decorativo sobre el título (aparece con animación) */
 .about-hero-eyebrow {
   font-size: 0.75rem; font-weight: 500; letter-spacing: 0.15em;
   text-transform: uppercase; color: var(--peach);
   margin-bottom: 20px; font-family: var(--font-body);
-  opacity: 0; transform: translateY(16px);
+  opacity: 0; transform: translateY(16px);   /* Empieza invisible y 16px abajo */
   animation: fadeUp 0.6s 0.2s forwards;
+  /* animation: nombre duración delay fill-mode
+     forwards = el elemento se queda en el estado final de la animación */
 }
+
+/* Título principal del hero */
 .about-hero-title {
   font-family: var(--font-display);
-  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-size: clamp(3rem, 6vw, 5.5rem);  /* Entre 48px y 88px, adaptable */
   font-weight: 700; line-height: 1.05; color: var(--cream);
   margin-bottom: 24px;
   opacity: 0; transform: translateY(28px);
-  animation: fadeUp 0.7s 0.35s forwards;
+  animation: fadeUp 0.7s 0.35s forwards;  /* 0.35s de delay (aparece después del eyebrow) */
 }
 .about-hero-title em { font-style: italic; color: var(--peach); }
+
+/* Descripción del hero */
 .about-hero-sub {
   font-size: 1rem; line-height: 1.7; font-weight: 300;
   color: rgba(253,248,240,0.55); max-width: 400px;
   opacity: 0; transform: translateY(20px);
-  animation: fadeUp 0.6s 0.52s forwards;
+  animation: fadeUp 0.6s 0.52s forwards;  /* Aparece el último, 0.52s de delay */
 }
 
-/* Año decorativo */
+/* El año de fundación decorativo (número gigante, casi invisible) */
 .about-hero-year {
   position: absolute; right: 80px; bottom: 100px;
   font-family: var(--font-display);
-  font-size: clamp(5rem, 10vw, 9rem);
-  font-weight: 700; color: rgba(245,200,160,0.07);
-  line-height: 1; user-select: none; z-index: 1;
-  letter-spacing: -0.04em;
+  font-size: clamp(5rem, 10vw, 9rem);   /* Número enorme */
+  font-weight: 700; color: rgba(245,200,160,0.07);  /* Casi transparente */
+  line-height: 1; user-select: none;    /* No se puede seleccionar con el mouse */
+  z-index: 1;
   opacity: 0; animation: fadeIn 1s 0.8s forwards;
 }
 
-/* Imagen flotante en hero */
+/* Imagen decorativa flotando a la derecha del hero */
 .about-hero-img {
-  position: absolute; right: 80px; top: 50%; transform: translateY(-45%);
+  position: absolute; right: 80px; top: 50%;
+  transform: translateY(-45%);  /* Centrada verticalmente */
   width: 320px; height: 420px; z-index: 2;
   opacity: 0; animation: heroImgIn 0.9s 0.55s cubic-bezier(0.23,1.2,0.5,1) forwards;
+  /* cubic-bezier es una curva de animación personalizada, más viva que "ease" */
 }
 .about-hero-img img {
   width: 100%; height: 100%; object-fit: cover; border-radius: 4px;
-  filter: drop-shadow(-24px 32px 48px rgba(0,0,0,0.65));
+  filter: drop-shadow(-24px 32px 48px rgba(0,0,0,0.65));  /* Sombra dramática */
 }
-/* Marco decorativo para la imagen del hero */
+
+/* Marco decorativo detrás de la imagen del hero */
 .about-hero-img::before {
   content: "";
   position: absolute; top: -10px; left: -10px; right: 10px; bottom: 10px;
-  border: 2px solid rgba(245,200,160,0.2); border-radius: 4px; pointer-events: none;
+  border: 2px solid rgba(245,200,160,0.2);  /* Borde dorado semi-transparente */
+  border-radius: 4px; pointer-events: none;
 }
 
+/* ── Animaciones del hero ── */
 @keyframes fadeUp {
   to { opacity: 1; transform: translateY(0); }
+  /* "to" define el estado FINAL. CSS infiere el "from" del estado inicial del elemento. */
 }
 @keyframes fadeIn {
   to { opacity: 1; }
 }
 @keyframes heroImgIn {
-  0%   { opacity: 0; transform: translateY(-40%) scale(0.94); }
-  100% { opacity: 1; transform: translateY(-45%) scale(1); }
+  0%   { opacity: 0; transform: translateY(-40%) scale(0.94); }  /* Pequeña y abajo */
+  100% { opacity: 1; transform: translateY(-45%) scale(1); }     /* Tamaño normal */
 }
 
-/* ════════════════════════════════════════
-   SECCIÓN: ORIGEN (texto + imagen lado a lado)
-════════════════════════════════════════ */
+
+/* ══════════════════════════════════════
+   ORIGEN — Sección con texto e imagen lado a lado
+   ══════════════════════════════════════ */
 .origin { background: var(--cream); padding: 120px 80px; }
+
+/* Grid de dos columnas iguales */
 .origin-inner {
   max-width: 1100px; margin: 0 auto;
   display: grid; grid-template-columns: 1fr 1fr;
   gap: 80px; align-items: center;
 }
-.origin-img-col { position: relative; }
+
+/* Columna izquierda con imágenes */
+.origin-img-col { position: relative; }  /* Para que las imágenes absolutas se posicionen aquí */
+
+/* Imagen principal */
 .origin-img-main {
   width: 100%; height: 480px; object-fit: cover;
   border-radius: 4px;
   filter: drop-shadow(0 24px 48px rgba(58,46,40,0.18));
   opacity: 0; transform: translateX(-32px);
+  /* Empieza invisible y 32px a la izquierda */
   transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.23,1,0.5,1);
 }
+/* JavaScript agrega la clase .visible al hacer scroll, que activa esto: */
 .origin-img-main.visible { opacity: 1; transform: translateX(0); }
-/* Segunda imagen superpuesta */
+
+/* Segunda imagen superpuesta sobre la principal (esquina inferior derecha) */
 .origin-img-secondary {
-  position: absolute; right: -32px; bottom: -40px;
+  position: absolute; right: -32px; bottom: -40px;  /* Sale un poco del contenedor */
   width: 52%; height: 220px; object-fit: cover;
-  border-radius: 4px; border: 6px solid var(--cream);
+  border-radius: 4px; border: 6px solid var(--cream);  /* Borde blanco como marco */
   box-shadow: 0 16px 40px rgba(58,46,40,0.2);
   opacity: 0; transform: translateY(24px);
   transition: opacity 0.7s 0.3s ease, transform 0.7s 0.3s ease;
+  /* 0.3s de delay → aparece un poco después que la imagen principal */
 }
 .origin-img-secondary.visible { opacity: 1; transform: translateY(0); }
-/* Línea decorativa en la imagen */
+
+/* Esquina decorativa de líneas en la imagen */
 .origin-img-deco {
   position: absolute; top: -16px; left: -16px;
   width: 80px; height: 80px;
   border-top: 2px solid var(--green-light);
   border-left: 2px solid var(--green-light);
-  border-radius: 4px 0 0 0;
+  border-radius: 4px 0 0 0;    /* Solo la esquina superior izquierda redondeada */
   opacity: 0; transition: opacity 0.5s 0.6s ease;
 }
 .origin-img-deco.visible { opacity: 0.6; }
 
+/* Columna derecha con el texto */
 .origin-text-col {
   opacity: 0; transform: translateY(28px);
   transition: opacity 0.7s 0.2s ease, transform 0.7s 0.2s ease;
 }
 .origin-text-col.visible { opacity: 1; transform: translateY(0); }
+
+/* Título de la sección */
 .origin-text-col h2 {
   font-family: var(--font-display);
   font-size: clamp(2rem, 3.2vw, 2.8rem);
@@ -181,22 +257,26 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(58,46,40,0.08); }
   line-height: 1.15; margin-bottom: 28px;
 }
 .origin-text-col h2 em { font-style: italic; color: var(--brown-dark); }
+
+/* Párrafos del texto */
 .origin-text-col p {
   font-size: 0.92rem; line-height: 1.9;
   color: var(--text-mid); margin-bottom: 18px;
 }
+
+/* Línea decorativa horizontal */
 .origin-divider {
   width: 40px; height: 2px; background: var(--peach);
   margin: 28px 0; border-radius: 2px;
 }
 
-/* Quote pull */
+/* Cita destacada (tipo "pull quote") */
 .origin-quote {
   margin: 32px 0;
   padding: 24px 28px;
-  border-left: 3px solid var(--peach);
+  border-left: 3px solid var(--peach);     /* Línea a la izquierda */
   background: var(--cream-warm);
-  border-radius: 0 8px 8px 0;
+  border-radius: 0 8px 8px 0;             /* Solo esquinas derechas redondeadas */
 }
 .origin-quote p {
   font-family: var(--font-display); font-style: italic;
@@ -210,29 +290,36 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(58,46,40,0.08); }
   color: var(--text-light);
 }
 
-/* ════════════════════════════════════════
-   SECCIÓN: VALORES (cards oscuras)
-════════════════════════════════════════ */
+
+/* ══════════════════════════════════════
+   VALORES — Tarjetas sobre fondo oscuro
+   ══════════════════════════════════════ */
 .values {
   background: linear-gradient(160deg, #2a2420 0%, #3a3128 40%, #2e2520 100%);
   padding: 120px 80px;
   position: relative; overflow: hidden;
 }
-/* Motivo de grano */
+
+/* Textura de grano de fondo */
 .values::before {
   content: "";
   position: absolute; inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,...");  /* Grano SVG inline */
   pointer-events: none;
 }
-/* Efecto de luz sutil */
+
+/* Luz sutil en la esquina superior derecha */
 .values::after {
   content: "";
   position: absolute; top: -50%; right: -50%;
   width: 600px; height: 600px;
   background: radial-gradient(circle, rgba(245,200,160,0.08) 0%, transparent 70%);
+  /* radial-gradient = degradado circular.
+     Luz dorada muy tenue que irradia desde la esquina. */
   pointer-events: none; z-index: 0;
 }
+
+/* Encabezado de la sección */
 .values-header {
   text-align: center; margin-bottom: 72px; position: relative; z-index: 1;
 }
@@ -244,57 +331,75 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(58,46,40,0.08); }
 }
 .values-header p { color: rgba(253,248,240,0.45); font-size: 0.9rem; max-width: 420px; margin: 0 auto; }
 
+/* Grid de tarjetas de valores: 3 columnas */
 .values-grid {
   display: grid; grid-template-columns: repeat(3, 1fr);
+  /* repeat(3, 1fr) = 3 columnas del mismo tamaño */
   gap: 28px; max-width: 1060px; margin: 0 auto;
   position: relative; z-index: 1;
 }
+
+/* Cada tarjeta de valor */
 .value-card {
   background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 100%);
-  border: 1px solid rgba(245,200,160,0.15);
+  /* Fondo casi transparente (vidrio oscuro) */
+  border: 1px solid rgba(245,200,160,0.15);  /* Borde dorado casi invisible */
   border-radius: 20px; padding: 44px 36px;
   position: relative; overflow: hidden;
-  opacity: 0; transform: translateY(32px);
+  opacity: 0; transform: translateY(32px);  /* Estado inicial para animación */
   transition: all 0.6s cubic-bezier(0.23,1.2,0.5,1);
   cursor: default;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);  /* Desenfoque del fondo detrás de la tarjeta */
 }
+
+/* La tarjeta aparece cuando tiene clase .visible (agregada por JavaScript) */
 .value-card.visible { opacity: 1; transform: translateY(0); }
-.value-card:nth-child(1).visible { transition-delay: 0s; }
-.value-card:nth-child(2).visible { transition-delay: 0.1s; }
-.value-card:nth-child(3).visible { transition-delay: 0.2s; }
+
+/* Cada tarjeta aparece con un pequeño delay escalonado */
+.value-card:nth-child(1).visible { transition-delay: 0s; }    /* 1ª: sin delay */
+.value-card:nth-child(2).visible { transition-delay: 0.1s; }  /* 2ª: 0.1s después */
+.value-card:nth-child(3).visible { transition-delay: 0.2s; }  /* 3ª: 0.2s después */
 .value-card:nth-child(4).visible { transition-delay: 0.3s; }
 .value-card:nth-child(5).visible { transition-delay: 0.4s; }
 .value-card:nth-child(6).visible { transition-delay: 0.5s; }
+
+/* Efecto hover: sube y brilla */
 .value-card:hover {
   background: linear-gradient(135deg, rgba(245,200,160,0.12) 0%, rgba(245,200,160,0.06) 100%);
   border-color: rgba(245,200,160,0.35);
-  transform: translateY(-12px);
-  box-shadow: 0 24px 60px rgba(245,200,160,0.2);
+  transform: translateY(-12px);   /* Sube 12px */
+  box-shadow: 0 24px 60px rgba(245,200,160,0.2);  /* Sombra dorada */
 }
-/* Línea decorativa superior */
+
+/* Línea decorativa superior de la tarjeta */
 .value-card::before {
   content: "";
   position: absolute; top: 0; left: 0; right: 0;
   height: 3px;
   background: linear-gradient(to right, transparent, var(--peach), transparent);
+  /* Línea dorada que aparece y desaparece en los extremos */
   opacity: 0.6;
   z-index: 10;
 }
-/* Número grande de fondo */
+
+/* Número grande de fondo (ej: "01" enorme y casi invisible) */
 .value-card::after {
   content: attr(data-num);
+  /* attr(data-num) toma el valor del atributo HTML data-num="01"
+     y lo muestra como texto del pseudo-elemento */
   position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
   font-family: var(--font-display); font-size: 7.5rem;
-  font-weight: 700; color: rgba(245,200,160,0.06);
+  font-weight: 700; color: rgba(245,200,160,0.06);  /* Casi invisible */
   line-height: 1; pointer-events: none; user-select: none;
   transition: all 0.4s ease;
 }
+/* Al hacer hover el número se vuelve un poco más visible */
 .value-card:hover::after {
   color: rgba(245,200,160,0.12);
-  transform: translateY(-50%) scale(1.1);
+  transform: translateY(-50%) scale(1.1);  /* Y crece un poco */
 }
 
+/* Caja del ícono de cada valor */
 .value-icon {
   width: 56px; height: 56px; margin-bottom: 28px;
   display: flex; align-items: center; justify-content: center;
@@ -305,25 +410,31 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(58,46,40,0.08); }
   transition: all 0.4s cubic-bezier(0.23,1.2,0.5,1);
   position: relative;
 }
+/* El ícono rota un poco al hacer hover */
 .value-card:hover .value-icon {
   background: linear-gradient(135deg, rgba(245,200,160,0.3) 0%, rgba(245,200,160,0.2) 100%);
   border-color: var(--peach);
-  transform: scale(1.15) rotate(5deg);
+  transform: scale(1.15) rotate(5deg);   /* Crece y rota 5 grados */
   box-shadow: 0 8px 20px rgba(245,200,160,0.25);
 }
+
+/* Título del valor */
 .value-title {
   font-family: var(--font-display); font-size: 1.2rem;
   font-weight: 700; color: var(--cream); margin-bottom: 14px;
   line-height: 1.3;
 }
+
+/* Texto descriptivo del valor */
 .value-text {
   font-size: 0.85rem; line-height: 1.8; color: rgba(253,248,240,0.5);
   font-weight: 400;
 }
 
-/* ════════════════════════════════════════
-   SECCIÓN: EQUIPO (personas)
-════════════════════════════════════════ */
+
+/* ══════════════════════════════════════
+   EQUIPO — Tarjetas con fotos del equipo
+   ══════════════════════════════════════ */
 .team {
   background: linear-gradient(135deg, #f5ede0 0%, #fdf8f0 100%);
   padding: 120px 80px; overflow: hidden;
@@ -333,9 +444,11 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(58,46,40,0.08); }
   content: "";
   position: absolute; top: 0; left: 0;
   width: 100%; height: 100%;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.02'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,...");  /* Grano sutil de fondo */
   pointer-events: none; z-index: 0;
 }
+
+/* Encabezado */
 .team-header {
   text-align: center; margin-bottom: 72px; position: relative; z-index: 1;
 }
@@ -347,11 +460,14 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(58,46,40,0.08); }
 }
 .team-header p { color: var(--text-light); font-size: 0.9rem; max-width: 400px; margin: 0 auto; }
 
+/* Grid de tarjetas del equipo: 3 columnas */
 .team-grid {
   display: grid; grid-template-columns: repeat(3, 1fr);
   gap: 40px; max-width: 1000px; margin: 0 auto;
   position: relative; z-index: 1;
 }
+
+/* Tarjeta de un miembro del equipo */
 .team-card {
   text-align: center;
   opacity: 0; transform: translateY(32px);
@@ -363,35 +479,46 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(58,46,40,0.08); }
   box-shadow: 0 8px 24px rgba(58,46,40,0.08);
 }
 .team-card.visible { opacity: 1; transform: translateY(0); }
+
+/* Delay escalonado: cada tarjeta aparece un poco después que la anterior */
 .team-card:nth-child(1).visible { transition-delay: 0s; }
 .team-card:nth-child(2).visible { transition-delay: 0.13s; }
 .team-card:nth-child(3).visible { transition-delay: 0.26s; }
+
+/* Al hacer hover: sube y proyecta más sombra */
 .team-card:hover {
   box-shadow: 0 20px 50px rgba(58,46,40,0.18);
   border-color: rgba(245,200,160,0.2);
   transform: translateY(-8px);
 }
 
+/* Contenedor de la foto de perfil */
 .team-img-wrap {
   width: 180px; height: 220px; margin: 0 auto 28px;
   position: relative; overflow: hidden;
   border-radius: 12px;
   box-shadow: 0 12px 32px rgba(58,46,40,0.2);
   transition: all 0.4s cubic-bezier(0.23,1.2,0.5,1);
-  border: 3px solid var(--peach);
+  border: 3px solid var(--peach);   /* Borde melocotón alrededor de la foto */
 }
+
+/* Al hacer hover sobre la tarjeta, el contenedor de foto cambia */
 .team-card:hover .team-img-wrap {
   box-shadow: 0 24px 60px rgba(245,200,160,0.3);
-  border-color: var(--green-deep);
-  transform: scale(1.05);
+  border-color: var(--green-deep);   /* El borde cambia de melocotón a verde */
+  transform: scale(1.05);            /* Crece un poco */
 }
+
+/* La imagen de perfil */
 .team-img-wrap img {
   width: 100%; height: 100%; object-fit: cover;
   transition: transform 0.5s cubic-bezier(0.23,1,0.5,1), filter 0.5s ease;
   filter: grayscale(0%);
 }
+/* La imagen hace zoom al hacer hover */
 .team-card:hover .team-img-wrap img { transform: scale(1.08); filter: grayscale(0%); }
-/* Overlay decorativo */
+
+/* Overlay decorativo sobre la imagen */
 .team-img-wrap::before {
   content: "";
   position: absolute; top: 0; left: 0;
@@ -399,80 +526,85 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(58,46,40,0.08); }
   background: linear-gradient(135deg, rgba(245,200,160,0) 0%, rgba(245,200,160,0.1) 100%);
   z-index: 1;
 }
+
+/* Overlay verde que aparece al hacer hover (efecto de brillo) */
 .team-img-wrap::after {
   content: "";
   position: absolute; inset: 0;
   background: linear-gradient(to top, rgba(90,158,111,0.4) 0%, transparent 70%);
-  opacity: 0; transition: opacity 0.4s ease;
+  /* Degradado verde de abajo hacia arriba */
+  opacity: 0;  /* Invisible por defecto */
+  transition: opacity 0.4s ease;
   z-index: 2;
 }
-.team-card:hover .team-img-wrap::after { opacity: 1; }
+.team-card:hover .team-img-wrap::after { opacity: 1; }  /* Aparece al hacer hover */
 
 .team-name {
   font-family: var(--font-display); font-size: 1.15rem;
   font-weight: 700; color: var(--text-dark); margin-bottom: 6px;
   letter-spacing: -0.01em;
 }
+
 .team-role {
   font-size: 0.73rem; letter-spacing: 0.12em; text-transform: uppercase;
-  color: var(--peach); font-weight: 600;
+  color: var(--peach); font-weight: 600;  /* Rol en color melocotón */
   margin-bottom: 14px;
 }
+
 .team-bio {
-  margin-top: 0; font-size: 0.82rem; line-height: 1.8;
+  font-size: 0.82rem; line-height: 1.8;
   color: var(--text-mid); max-width: 240px; margin-inline: auto;
+  /* margin-inline: auto → centra horizontalmente (forma moderna de margin: 0 auto) */
   font-weight: 400;
 }
 
-/* ════════════════════════════════════════
-   SECCIÓN: PROCESO (timeline horizontal)
-════════════════════════════════════════ */
+
+/* ══════════════════════════════════════
+   PROCESO — Timeline horizontal (4 pasos)
+   ══════════════════════════════════════ */
 .process {
   background: linear-gradient(135deg, var(--cream) 0%, #f9f4ed 100%);
   padding: 120px 80px; overflow: hidden;
   position: relative;
 }
-.process::before {
-  content: "";
-  position: absolute; top: 0; left: 0;
-  width: 100%; height: 100%;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.02'/%3E%3C/svg%3E");
-  pointer-events: none; z-index: 0;
-}
+
+/* Encabezado de la sección */
 .process-header {
   text-align: center; margin-bottom: 72px; position: relative; z-index: 1;
 }
-.process-header .section-label { color: var(--green-deep); }
-.process-header h2 {
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 3.2vw, 2.8rem);
-  font-weight: 700; color: var(--text-dark); margin-bottom: 12px;
-}
-.process-header p { color: var(--text-light); font-size: 0.9rem; }
 
+/* Grid de 4 columnas (los 4 pasos) */
 .process-steps {
   display: grid; grid-template-columns: repeat(4, 1fr);
   gap: 0; max-width: 1060px; margin: 0 auto;
   position: relative; z-index: 1;
 }
-/* Línea conectora mejorada */
+
+/* Línea horizontal que conecta los 4 pasos */
 .process-steps::before {
   content: "";
   position: absolute; top: 36px; left: 12.5%; right: 12.5%;
+  /* Empieza y termina al 12.5% (centrado con los círculos de los pasos) */
   height: 3px; background: linear-gradient(to right, var(--peach) 0%, var(--green-light) 50%, var(--peach) 100%);
   opacity: 0.6; z-index: 0; border-radius: 2px;
 }
+
+/* Cada paso del proceso */
 .process-step {
   text-align: center; padding: 0 16px;
   opacity: 0; transform: translateY(24px);
   transition: opacity 0.55s ease, transform 0.55s cubic-bezier(0.23,1.2,0.5,1);
-  position: relative; z-index: 1;
+  position: relative; z-index: 1;  /* Por encima de la línea (::before) */
 }
 .process-step.visible { opacity: 1; transform: translateY(0); }
+
+/* Delay escalonado para los 4 pasos */
 .process-step:nth-child(1).visible { transition-delay: 0s; }
 .process-step:nth-child(2).visible { transition-delay: 0.12s; }
 .process-step:nth-child(3).visible { transition-delay: 0.24s; }
 .process-step:nth-child(4).visible { transition-delay: 0.36s; }
+
+/* Círculo del paso con el emoji o número */
 .step-dot {
   width: 72px; height: 72px; border-radius: 50%;
   background: linear-gradient(135deg, var(--peach) 0%, #f5b670 100%);
@@ -485,15 +617,18 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(58,46,40,0.08); }
   position: relative;
   font-family: var(--font-display);
   line-height: 1;
-  vertical-align: middle;
 }
+
+/* Anillo decorativo alrededor del círculo */
 .step-dot::after {
   content: "";
-  position: absolute; inset: -4px;
+  position: absolute; inset: -4px;  /* 4px más grande que el círculo */
   border: 2px solid rgba(245,200,160,0.3);
   border-radius: 50%;
   transition: all 0.4s ease;
 }
+
+/* Al hacer hover: el círculo sube y crece */
 .process-step:hover .step-dot {
   transform: scale(1.18) translateY(-8px);
   box-shadow: 0 16px 40px rgba(245,200,160,0.5);
@@ -502,45 +637,53 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(58,46,40,0.08); }
   border-color: var(--peach);
   transform: scale(1.15);
 }
+
+/* Número del paso encima del título */
 .step-num {
   display: block; font-size: 0.65rem; font-weight: 600;
   letter-spacing: 0.12em; color: var(--green-deep);
   text-transform: uppercase; margin-bottom: 12px;
   font-family: var(--font-body);
 }
+
 .step-title {
   font-family: var(--font-display); font-size: 1.08rem;
   font-weight: 700; color: var(--text-dark); margin-bottom: 12px;
   line-height: 1.3;
 }
+
 .step-desc {
   font-size: 0.8rem; line-height: 1.8; color: var(--text-mid);
   font-weight: 400;
 }
 
-/* ════════════════════════════════════════
-   CTA FINAL
-════════════════════════════════════════ */
+
+/* ══════════════════════════════════════
+   CTA FINAL — Llamada a la acción
+   ══════════════════════════════════════ */
 .about-cta {
   background: var(--cream-warm); padding: 100px 80px;
   text-align: center; position: relative; overflow: hidden;
 }
+
+/* Granos decorativos en las esquinas */
 .about-cta::before, .about-cta::after {
   content: ""; position: absolute;
   width: 200px; height: 200px;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cellipse cx='40' cy='40' rx='22' ry='32' fill='%239e7b6a' opacity='0.15' transform='rotate(-20 40 40)'/%3E%3Cpath d='M40 12 Q58 40 40 68' stroke='%239e7b6a' stroke-width='2' fill='none' opacity='0.2' transform='rotate(-20 40 40)'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,...");  /* SVG de grain de café */
   background-repeat: no-repeat; pointer-events: none;
 }
 .about-cta::before { top: -20px; left: -40px; transform: scale(2.5) rotate(-15deg); opacity: 0.35; }
 .about-cta::after  { bottom: -20px; right: -40px; transform: scale(2.5) rotate(15deg); opacity: 0.35; }
 
+/* Contenido central */
 .about-cta-inner {
   position: relative; z-index: 2; max-width: 540px; margin: 0 auto;
   opacity: 0; transform: translateY(24px);
   transition: opacity 0.7s ease, transform 0.7s ease;
 }
 .about-cta-inner.visible { opacity: 1; transform: translateY(0); }
-.about-cta .section-label { color: var(--brown-dark); }
+
 .about-cta h2 {
   font-family: var(--font-display);
   font-size: clamp(2rem, 3.2vw, 2.8rem);
@@ -548,7 +691,11 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(58,46,40,0.08); }
   line-height: 1.15; margin-bottom: 18px;
 }
 .about-cta p { color: var(--text-mid); font-size: 0.92rem; line-height: 1.7; margin-bottom: 36px; }
+
+/* Contenedor de botones */
 .cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+/* Botón principal (relleno) */
 .btn-primary {
   background: var(--peach); color: var(--text-dark);
   border: none; padding: 14px 32px; border-radius: 4px;
@@ -556,6 +703,8 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(58,46,40,0.08); }
   cursor: pointer; transition: all 0.25s; text-decoration: none; display: inline-block;
 }
 .btn-primary:hover { background: #f0b870; transform: translateY(-2px); }
+
+/* Botón secundario (solo borde, "fantasma") */
 .btn-ghost {
   background: transparent; color: var(--text-dark);
   border: 1.5px solid var(--brown-light);
@@ -565,119 +714,133 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(58,46,40,0.08); }
 }
 .btn-ghost:hover { border-color: var(--text-dark); transform: translateY(-2px); }
 
-/* ── Footer ── */
+
+/* ── FOOTER ───────────────────────────────────────────────── */
 footer { background: var(--text-dark); padding: 60px 80px 0; color: rgba(253,248,240,0.5); }
-.footer-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 48px; padding-bottom: 48px; border-bottom: 1px solid rgba(253,248,240,0.08); }
+
+/* Grid de 4 columnas en el footer */
+.footer-grid {
+  display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr;
+  /* Primera columna es 1.6 veces más ancha (para la descripción de la marca) */
+  gap: 48px; padding-bottom: 48px;
+  border-bottom: 1px solid rgba(253,248,240,0.08);  /* Línea sutil */
+}
+
 .footer-logo { font-family: var(--font-display); color: var(--cream); font-size: 1.05rem; font-weight: 700; margin-bottom: 14px; display: block; }
 .footer-brand p { font-size: 0.8rem; line-height: 1.65; margin-bottom: 22px; max-width: 220px; }
 .footer-socials { display: flex; gap: 10px; }
-.footer-social { width: 32px; height: 32px; border: 1px solid rgba(253,248,240,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: rgba(253,248,240,0.35); font-size: 10px; font-family: var(--font-body); cursor: pointer; transition: all 0.2s; text-transform: lowercase; }
+
+/* Íconos de redes sociales */
+.footer-social {
+  width: 32px; height: 32px;
+  border: 1px solid rgba(253,248,240,0.15); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(253,248,240,0.35); font-size: 10px;
+  font-family: var(--font-body); cursor: pointer;
+  transition: all 0.2s; text-transform: lowercase;
+}
 .footer-social:hover { border-color: var(--peach); color: var(--peach); }
-.footer-col h3 { color: var(--cream); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 18px; font-family: var(--font-body); }
+
+/* Títulos de cada columna del footer */
+.footer-col h3 {
+  color: var(--cream); font-size: 0.75rem; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  margin-bottom: 18px; font-family: var(--font-body);
+}
+
+/* Links del footer */
 .footer-col ul { list-style: none; }
 .footer-col ul li { margin-bottom: 10px; font-size: 0.8rem; }
 .footer-col ul li a { color: rgba(253,248,240,0.4); text-decoration: none; transition: color 0.2s; }
 .footer-col ul li a:hover { color: var(--peach); }
-.footer-bottom { padding: 20px 0; display: flex; align-items: center; justify-content: space-between; font-size: 0.74rem; color: rgba(253,248,240,0.2); }
+
+/* Barra inferior del footer: copyright */
+.footer-bottom {
+  padding: 20px 0; display: flex;
+  align-items: center; justify-content: space-between;
+  font-size: 0.74rem; color: rgba(253,248,240,0.2);
+}
 .footer-credit { color: rgba(245,200,160,0.35); }
 
-/* ── Scroll reveal helper ── */
+
+/* ── CLASE UTILITARIA DE ANIMACIÓN ──────────────────────────
+   Se puede agregar .reveal a cualquier elemento y aparecerá
+   cuando sea visible con JavaScript (Intersection Observer).
+────────────────────────────────────────────────────────────── */
 .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
-/* ── Responsive ── */
+
+/* ══════════════════════════════════════════════════════════
+   RESPONSIVE
+   ══════════════════════════════════════════════════════════ */
+
+/* Tablets: pantallas de hasta 960px */
 @media (max-width: 960px) {
   nav { padding: 0 24px; }
-  .nav-links { display: none; }
+  .nav-links { display: none; }  /* El menú se oculta (normalmente hay un menú hamburguesa JS) */
+
   .about-hero { padding: calc(var(--nav-h) + 48px) 28px 80px; }
-  .about-hero-img { display: none; }
-  .about-hero-year { display: none; }
-  .essence { padding: 0 24px; }
-  .essence-inner { grid-template-columns: 1fr 1fr; }
-  .essence-item { border-bottom: 1px solid rgba(253,248,240,0.06); }
+  .about-hero-img { display: none; }   /* La imagen decorativa desaparece en tablets */
+  .about-hero-year { display: none; }  /* El año decorativo también desaparece */
+
+  /* Origen: de dos columnas a una */
   .origin, .values, .team, .process, .about-cta { padding: 72px 28px; }
   .origin-inner { grid-template-columns: 1fr; gap: 48px; }
-  .origin-img-secondary { display: none; }
+  .origin-img-secondary { display: none; }  /* Solo la imagen principal */
+
+  /* Valores y equipo: una columna */
   .values-grid, .team-grid { grid-template-columns: 1fr; }
+
+  /* Proceso: de 4 columnas a 2 */
   .process-steps { grid-template-columns: 1fr 1fr; gap: 40px; }
-  .process-steps::before { display: none; }
+  .process-steps::before { display: none; }  /* La línea conectora desaparece */
+
+  /* Footer: de 4 a 2 columnas */
   footer { padding: 48px 24px 0; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
 }
-/* ── Móvil grande (≤ 640px) ── */
+
+/* Móvil grande: hasta 640px */
 @media (max-width: 640px) {
-  /* Nav */
   nav { padding: 0 16px; }
 
-  /* Hero */
-  .about-hero {
-    padding: calc(var(--nav-h) + 32px) 16px 60px;
-    min-height: 50vh;
-    align-items: flex-end;
-  }
+  /* Hero más compacto */
+  .about-hero { padding: calc(var(--nav-h) + 32px) 16px 60px; min-height: 50vh; }
   .about-hero-content { max-width: 100%; }
   .about-hero-title { font-size: clamp(2.4rem, 10vw, 3.6rem); margin-bottom: 16px; }
   .about-hero-sub   { font-size: 0.88rem; max-width: 100%; }
 
-  /* Origen */
   .origin { padding: 56px 16px; }
   .origin-inner { gap: 36px; }
-  .origin-img-main { height: 300px; }
-  .origin-text-col h2 { font-size: clamp(1.7rem, 7vw, 2.2rem); margin-bottom: 18px; }
-  .origin-text-col p  { font-size: 0.88rem; }
-  .origin-quote { padding: 18px 20px; }
-  .origin-quote p { font-size: 0.95rem; }
+  .origin-img-main { height: 300px; }  /* Imagen más pequeña */
+  .origin-text-col h2 { font-size: clamp(1.7rem, 7vw, 2.2rem); }
 
-  /* Esencia (strip de stats) */
-  .essence { padding: 0 16px; }
-  .essence-inner { grid-template-columns: 1fr; }
-  .essence-item {
-    padding: 28px 0;
-    border-bottom: 1px solid rgba(253,248,240,0.06);
-  }
-
-  /* Valores */
   .values { padding: 56px 16px; }
   .values-header { margin-bottom: 40px; }
-  .values-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
+  .values-grid { grid-template-columns: 1fr; gap: 20px; }
   .value-card { padding: 32px 24px; }
 
-  /* Equipo */
   .team { padding: 56px 16px; }
-  .team-header { margin-bottom: 40px; }
-  .team-grid {
-    grid-template-columns: 1fr;
-    gap: 28px;
-    max-width: 340px;
-    margin: 0 auto;
-  }
+  .team-grid { grid-template-columns: 1fr; gap: 28px; max-width: 340px; margin: 0 auto; }
   .team-img-wrap { width: 140px; height: 175px; }
 
-  /* Proceso */
   .process { padding: 56px 16px; }
-  .process-header { margin-bottom: 40px; }
-  .process-steps {
-    grid-template-columns: 1fr;
-    gap: 36px;
-  }
+  /* Proceso: una sola columna en móvil */
+  .process-steps { grid-template-columns: 1fr; gap: 36px; }
   .step-dot { width: 60px; height: 60px; font-size: 1.5rem; margin-bottom: 20px; }
 
-  /* CTA final */
   .about-cta { padding: 64px 16px; }
-  .about-cta h2 { font-size: clamp(1.8rem, 7vw, 2.2rem); }
+  /* Botones apilados en columna */
   .cta-btns { flex-direction: column; align-items: center; gap: 12px; }
   .btn-primary, .btn-ghost { width: 100%; text-align: center; }
 
-  /* Footer */
   footer { padding: 40px 16px 0; }
-  .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 32px; }  /* Footer en una columna */
   .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
 }
 
-/* ── Móvil pequeño (≤ 380px) ── */
+/* Móvil pequeño: hasta 380px */
 @media (max-width: 380px) {
   .about-hero-title { font-size: 2.2rem; }
   .value-card { padding: 24px 18px; }

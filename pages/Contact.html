@@ -1,208 +1,232 @@
 <!doctype html>
 <html lang="es">
 <head>
+  <!-- Información del documento -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contáctanos — Coffe Lawhore</title>
+
+  <!-- Conexión a Google Fonts para cargar tipografías -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Estilos generales y específicos para la página de contacto -->
   <link rel="stylesheet" href="/CSS/style.css">
-  <link rel="shortcut icon" href="/img/logo.png" type="image/x-icon">
   <link rel="stylesheet" href="/CSS/Contact.css">
+
+  <!-- Icono de la pestaña del navegador -->
+  <link rel="shortcut icon" href="/img/logo.png" type="image/x-icon">
+
+  <!-- Script de componentes reutilizables, cargado con defer para no bloquear la carga -->
   <script src="/js/components.js" defer></script>
 </head>
 <body>
   <header>
+    <!-- Barra de navegación principal -->
     <nav-bar page="contacto"></nav-bar>
   </header>
+
   <main class="contact-main">
-    <!-- BG IMAGE PANEL -->
+    <!-- Panel de fondo con imagen y datos de contacto -->
     <div class="bg-panel">
       <img
         class="bg-img"
         src="https://i.pinimg.com/1200x/00/aa/23/00aa235d21f94a988b0a06e66dca319f.jpg"
         alt="Café atmosphere"
       >
-    <div class="bg-overlay"></div>
-    <div class="bg-content">
-      <div class="brand-badge"><img src="/img/logo.png" alt="Coffe Lawhore logo" class="logo-img"></div>
-      <p class="brand-tagline">Coffe Lawhore</p>
-      <h1 class="bg-headline">Cada taza,<br><em>una historia.</em></h1>
-      <p class="bg-sub">Reserva tu mesa o escríbenos.<br>Siempre hay lugar para ti.</p>
-      <div class="bg-details">
-        <div class="detail-item">
-          <span>Colonia Escalón, San Salvador</span>
-        </div>
-        <div class="detail-item">
-          <span>Lun–Vie 7:00–21:00 · Sáb–Dom 8:00–22:00</span>
-        </div>
-        <div class="detail-item">
-          <span>+503 2222-0000</span>
+      <div class="bg-overlay"></div>
+      <div class="bg-content">
+        <div class="brand-badge"><img src="/img/logo.png" alt="Coffe Lawhore logo" class="logo-img"></div>
+        <p class="brand-tagline">Coffe Lawhore</p>
+        <h1 class="bg-headline">Cada taza,<br><em>una historia.</em></h1>
+        <p class="bg-sub">Reserva tu mesa o escríbenos.<br>Siempre hay lugar para ti.</p>
+
+        <!-- Datos de ubicación y horario -->
+        <div class="bg-details">
+          <div class="detail-item">
+            <span>Colonia Escalón, San Salvador</span>
+          </div>
+          <div class="detail-item">
+            <span>Lun–Vie 7:00–21:00 · Sáb–Dom 8:00–22:00</span>
+          </div>
+          <div class="detail-item">
+            <span>+503 2222-0000</span>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- FORM PANEL -->
-  <div class="form-panel">
-    <div class="form-inner">
+    <!-- Panel del formulario de contacto -->
+    <div class="form-panel">
+      <div class="form-inner">
 
-      <div class="form-header">
-        <span class="form-eyebrow">Estamos aquí para ti</span>
-        <h2 class="form-title">Contáctanos</h2>
-        <p class="form-subtitle">¿Quieres reservar una mesa, celebrar un momento especial o simplemente decirnos algo? Escríbenos y te respondemos pronto.</p>
-      </div>
+        <div class="form-header">
+          <span class="form-eyebrow">Estamos aquí para ti</span>
+          <h2 class="form-title">Contáctanos</h2>
+          <p class="form-subtitle">¿Quieres reservar una mesa, celebrar un momento especial o simplemente decirnos algo? Escríbenos y te respondemos pronto.</p>
+        </div>
 
-      <!-- TABS -->
-      <div class="tabs" role="tablist">
-        <button class="tab active" id="tab-reserva" role="tab" aria-selected="true" onclick="switchTab('reserva')">
-           Reservar mesa
-        </button>
-        <button class="tab" id="tab-mensaje" role="tab" aria-selected="false" onclick="switchTab('mensaje')">
-          Enviar mensaje
-        </button>
-      </div>
+        <!-- Pestañas para cambiar entre reserva y mensaje -->
+        <div class="tabs" role="tablist">
+          <button class="tab active" id="tab-reserva" role="tab" aria-selected="true" onclick="switchTab('reserva')">
+            Reservar mesa
+          </button>
+          <button class="tab" id="tab-mensaje" role="tab" aria-selected="false" onclick="switchTab('mensaje')">
+            Enviar mensaje
+          </button>
+        </div>
 
-      <form id="contactForm" novalidate>
+        <form id="contactForm" novalidate>
 
-        <!-- ── PANEL: RESERVA ── -->
-        <div class="tab-panel active" id="panel-reserva" role="tabpanel" aria-labelledby="tab-reserva">
+          <!-- PANEL: RESERVA -->
+          <div class="tab-panel active" id="panel-reserva" role="tabpanel" aria-labelledby="tab-reserva">
 
-          <div class="field-row">
-            <div class="field">
-              <label for="r-nombre">Nombre <span class="req">*</span></label>
-              <input type="text" id="r-nombre" name="r-nombre" placeholder="Tu nombre">
-            </div>
-            <div class="field">
-              <label for="r-apellidos">Apellidos <span class="req">*</span></label>
-              <input type="text" id="r-apellidos" name="r-apellidos" placeholder="Tus apellidos">
-            </div>
-          </div>
-
-          <div class="field-row">
-            <div class="field">
-              <label for="r-email">Correo electrónico <span class="req">*</span></label>
-              <input type="email" id="r-email" name="r-email" placeholder="hola@correo.com">
-            </div>
-            <div class="field">
-              <label for="r-telefono">Teléfono <span class="req">*</span></label>
-              <input type="tel" id="r-telefono" name="r-telefono" placeholder="7000-0000" maxlength="8">
-            </div>
-          </div>
-
-          <div class="field-row">
-            <div class="field">
-              <label for="r-fecha">Fecha de reserva <span class="req">*</span></label>
-              <input type="date" id="r-fecha" name="r-fecha">
-            </div>
-            <div class="field">
-              <label for="r-hora">Hora <span class="req">*</span></label>
-              <select id="r-hora" name="r-hora">
-                <option value="">Selecciona un horario</option>
-                <option>07:00 – 08:00</option>
-                <option>08:00 – 09:00</option>
-                <option>09:00 – 10:00</option>
-                <option>10:00 – 11:00</option>
-                <option>11:00 – 12:00</option>
-                <option>12:00 – 13:00</option>
-                <option>13:00 – 14:00</option>
-                <option>14:00 – 15:00</option>
-                <option>15:00 – 16:00</option>
-                <option>16:00 – 17:00</option>
-                <option>17:00 – 18:00</option>
-                <option>18:00 – 19:00</option>
-                <option>19:00 – 20:00</option>
-                <option>20:00 – 21:00</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="field-row">
-            <fieldset class="field" style="border:none;padding:0;margin:0;">
-              <legend class="field-legend">Número de personas <span class="req">*</span></legend>
-              <div class="counter-wrap">
-                <button type="button" class="counter-btn" onclick="changeCount(-1)">−</button>
-                <span class="counter-val" id="counterVal" role="spinbutton" aria-valuenow="2" aria-valuemin="1" tabindex="0">2</span>
-                <button type="button" class="counter-btn" onclick="changeCount(1)">+</button>
-                <input type="hidden" id="r-personas" name="r-personas" value="2">
+            <!-- Primera fila: nombre y apellidos -->
+            <div class="field-row">
+              <div class="field">
+                <label for="r-nombre">Nombre <span class="req">*</span></label>
+                <input type="text" id="r-nombre" name="r-nombre" placeholder="Tu nombre">
               </div>
-            </fieldset>
+              <div class="field">
+                <label for="r-apellidos">Apellidos <span class="req">*</span></label>
+                <input type="text" id="r-apellidos" name="r-apellidos" placeholder="Tus apellidos">
+              </div>
+            </div>
+
+            <!-- Segunda fila: correo y teléfono -->
+            <div class="field-row">
+              <div class="field">
+                <label for="r-email">Correo electrónico <span class="req">*</span></label>
+                <input type="email" id="r-email" name="r-email" placeholder="hola@correo.com">
+              </div>
+              <div class="field">
+                <label for="r-telefono">Teléfono <span class="req">*</span></label>
+                <input type="tel" id="r-telefono" name="r-telefono" placeholder="7000-0000" maxlength="8">
+              </div>
+            </div>
+
+            <!-- Tercera fila: fecha y hora de reserva -->
+            <div class="field-row">
+              <div class="field">
+                <label for="r-fecha">Fecha de reserva <span class="req">*</span></label>
+                <input type="date" id="r-fecha" name="r-fecha">
+              </div>
+              <div class="field">
+                <label for="r-hora">Hora <span class="req">*</span></label>
+                <select id="r-hora" name="r-hora">
+                  <option value="">Selecciona un horario</option>
+                  <option>07:00 – 08:00</option>
+                  <option>08:00 – 09:00</option>
+                  <option>09:00 – 10:00</option>
+                  <option>10:00 – 11:00</option>
+                  <option>11:00 – 12:00</option>
+                  <option>12:00 – 13:00</option>
+                  <option>13:00 – 14:00</option>
+                  <option>14:00 – 15:00</option>
+                  <option>15:00 – 16:00</option>
+                  <option>16:00 – 17:00</option>
+                  <option>17:00 – 18:00</option>
+                  <option>18:00 – 19:00</option>
+                  <option>19:00 – 20:00</option>
+                  <option>20:00 – 21:00</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Cuarta fila: número de personas y ocasión especial -->
+            <div class="field-row">
+              <fieldset class="field" style="border:none;padding:0;margin:0;">
+                <legend class="field-legend">Número de personas <span class="req">*</span></legend>
+                <div class="counter-wrap">
+                  <button type="button" class="counter-btn" onclick="changeCount(-1)">−</button>
+                  <span class="counter-val" id="counterVal" role="spinbutton" aria-valuenow="2" aria-valuemin="1" tabindex="0">2</span>
+                  <button type="button" class="counter-btn" onclick="changeCount(1)">+</button>
+                  <input type="hidden" id="r-personas" name="r-personas" value="2">
+                </div>
+              </fieldset>
+              <div class="field">
+                <label for="r-ocasion">Ocasión especial</label>
+                <select id="r-ocasion" name="r-ocasion">
+                  <option value="">Ninguna en particular</option>
+                  <option>Cumpleaños</option>
+                  <option>Aniversario</option>
+                  <option>Reunión de trabajo</option>
+                  <option>Cita romántica</option>
+                  <option>Reunión de amigos</option>
+                  <option>Otra celebración</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Notas adicionales para la reserva -->
             <div class="field">
-              <label for="r-ocasion">Ocasión especial</label>
-              <select id="r-ocasion" name="r-ocasion">
-                <option value="">Ninguna en particular</option>
-                <option>Cumpleaños</option>
-                <option>Aniversario</option>
-                <option>Reunión de trabajo</option>
-                <option>Cita romántica</option>
-                <option>Reunión de amigos</option>
-                <option>Otra celebración</option>
+              <label for="r-notas">Solicitudes especiales o notas</label>
+              <textarea id="r-notas" name="r-notas" rows="3" placeholder="Alergias, decoración especial, preferencias de mesa…"></textarea>
+            </div>
+
+          </div>
+
+          <!-- PANEL: MENSAJE -->
+          <div class="tab-panel" id="panel-mensaje" role="tabpanel" aria-labelledby="tab-mensaje">
+
+            <!-- Nombre y correo para enviar mensaje -->
+            <div class="field-row">
+              <div class="field">
+                <label for="m-nombre">Nombre <span class="req">*</span></label>
+                <input type="text" id="m-nombre" name="m-nombre" placeholder="Tu nombre">
+              </div>
+              <div class="field">
+                <label for="m-email">Correo electrónico <span class="req">*</span></label>
+                <input type="email" id="m-email" name="m-email" placeholder="hola@correo.com">
+              </div>
+            </div>
+
+            <!-- Selección de asunto del mensaje -->
+            <div class="field">
+              <label for="m-asunto">Asunto <span class="req">*</span></label>
+              <select id="m-asunto" name="m-asunto">
+                <option value="">¿En qué podemos ayudarte?</option>
+                <option>Información general</option>
+                <option>Eventos privados</option>
+                <option>Menú y bebidas</option>
+                <option>Catering o servicio a domicilio</option>
+                <option>Comentarios y sugerencias</option>
+                <option>Otro</option>
               </select>
             </div>
+
+            <!-- Texto del mensaje -->
+            <div class="field">
+              <label for="m-mensaje">Mensaje <span class="req">*</span></label>
+              <textarea id="m-mensaje" name="m-mensaje" rows="5" placeholder="Cuéntanos cómo podemos ayudarte…"></textarea>
+            </div>
+
           </div>
 
-          <div class="field">
-            <label for="r-notas">Solicitudes especiales o notas</label>
-            <textarea id="r-notas" name="r-notas" rows="3" placeholder="Alergias, decoración especial, preferencias de mesa…"></textarea>
-          </div>
+          <!-- Botón para enviar el formulario -->
+          <button type="submit" class="btn-submit" id="btnSubmit">
+            <span class="btn-text" id="btnText">Enviar</span>
+            <span class="btn-icon" id="btnIcon">→</span>
+          </button>
 
+        </form>
+
+        <!-- Mensaje de éxito que aparece después del envío -->
+        <div class="success-msg" id="successMsg">
+          <div class="brand-badge"><img src="/img/logo.png" alt="Coffe Lawhore logo" class="logo-img"></div>
+          <h3 class="success-title">¡Mensaje recibido!</h3>
+          <p class="success-body">Gracias por escribirnos. Nuestro equipo te contactará pronto para confirmar tu reserva o responder tu consulta.</p>
+          <button class="btn-reset" onclick="resetForm()">Enviar otro mensaje</button>
         </div>
 
-        <!-- ── PANEL: MENSAJE ── -->
-        <div class="tab-panel" id="panel-mensaje" role="tabpanel" aria-labelledby="tab-mensaje">
-
-          <div class="field-row">
-            <div class="field">
-              <label for="m-nombre">Nombre <span class="req">*</span></label>
-              <input type="text" id="m-nombre" name="m-nombre" placeholder="Tu nombre">
-            </div>
-            <div class="field">
-              <label for="m-email">Correo electrónico <span class="req">*</span></label>
-              <input type="email" id="m-email" name="m-email" placeholder="hola@correo.com">
-            </div>
-          </div>
-
-          <div class="field">
-            <label for="m-asunto">Asunto <span class="req">*</span></label>
-            <select id="m-asunto" name="m-asunto">
-              <option value="">¿En qué podemos ayudarte?</option>
-              <option>Información general</option>
-              <option>Eventos privados</option>
-              <option>Menú y bebidas</option>
-              <option>Catering o servicio a domicilio</option>
-              <option>Comentarios y sugerencias</option>
-              <option>Otro</option>
-            </select>
-          </div>
-
-          <div class="field">
-            <label for="m-mensaje">Mensaje <span class="req">*</span></label>
-            <textarea id="m-mensaje" name="m-mensaje" rows="5" placeholder="Cuéntanos cómo podemos ayudarte…"></textarea>
-          </div>
-
-        </div>
-
-        <!-- SUBMIT -->
-        <button type="submit" class="btn-submit" id="btnSubmit">
-          <span class="btn-text" id="btnText">Enviar</span>
-          <span class="btn-icon" id="btnIcon">→</span>
-        </button>
-
-      </form>
-
-      <!-- SUCCESS STATE -->
-      <div class="success-msg" id="successMsg">
-       <div class="brand-badge"><img src="/img/logo.png" alt="Coffe Lawhore logo" class="logo-img"></div>
-        <h3 class="success-title">¡Mensaje recibido!</h3>
-        <p class="success-body">Gracias por escribirnos. Nuestro equipo te contactará pronto para confirmar tu reserva o responder tu consulta.</p>
-        <button class="btn-reset" onclick="resetForm()">Enviar otro mensaje</button>
       </div>
-
     </div>
-  </div>
   </main>
+
+  <!-- Pie de página reutilizable -->
   <site-footer></site-footer>
 
+  <!-- Scripts de la página -->
   <script src="/js/main.js"></script>
   <script src="/js/Contact.js"></script>
 </body>

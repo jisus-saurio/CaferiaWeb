@@ -1,12 +1,21 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <!-- Información de la página -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menú</title>
+
+    <!-- Estilos generales de la página -->
     <link rel="stylesheet" href="/CSS/style.css">
+
+    <!-- Icono de la pestaña del navegador -->
     <link rel="shortcut icon" href="/img/logo.png" type="image/x-icon">
+
+    <!-- Script para componentes reutilizables, cargado con defer para no bloquear la página -->
     <script src="/js/components.js" defer></script>
+
+    <!-- Estilos propios para el botón flotante del carrito -->
     <style>
       .cart-fab {
         position: fixed; bottom: 32px; right: 32px; z-index: 999;
@@ -18,6 +27,8 @@
         transition: background .2s, transform .2s;
       }
       .cart-fab:hover { background: #3b1f0e; transform: translateY(-2px); }
+
+      /* Contador dentro del botón del carrito */
       .cart-fab-count {
         position: absolute; top: -4px; right: -4px;
         background: #c8873a; color: #fff;
@@ -35,19 +46,21 @@
 </head>
 <body>
     <header>
-    <nav-bar page="inicio"></nav-bar>
+      <!-- Barra de navegación reutilizable -->
+      <nav-bar page="inicio"></nav-bar>
     </header>
 
     <main>
 
-      <!-- Sección de bebidas -->
+      <!-- Sección principal de bebidas -->
       <section class="featured" id="menu" aria-labelledby="featured-heading" style="padding-top: calc(var(--nav-h) + 60px);">
         <div class="featured-header">
           <h1>Nuestra especialidad</h1>
-        <p>"Las consentidas de la casa"</p>
+          <p>"Las consentidas de la casa"</p>
         </div>
 
         <div class="drinks-grid">
+          <!-- Carta del primer producto -->
           <article class="drink-card">
             <div class="drink-card-img-wrapper">
               <img
@@ -67,6 +80,7 @@
             </div>
           </article>
 
+          <!-- Carta del segundo producto -->
           <article class="drink-card">
             <div class="drink-card-img-wrapper">
               <img
@@ -87,6 +101,7 @@
             </div>
           </article>
 
+          <!-- Carta del tercer producto -->
           <article class="drink-card">
             <div class="drink-card-img-wrapper">
               <img
@@ -109,19 +124,16 @@
           </article>
         </div>
       </section>
-      <!-- Fin de sección -->
+      <!-- Fin de sección de bebidas -->
 
-
-      <!-- Inicio de postres dulces -->
-
-<section class="featured" id="menu-postres" aria-labelledby="featured-heading">
-  <div class="featured-header">
-    <h1>Postres</h1>
-    <p>"El acompañante perfecto para tu bebida. No te vayas sin probarlos"</p>
-  </div>
+      <!-- Sección de postres dulces -->
+      <section class="featured" id="menu-postres" aria-labelledby="featured-heading">
+        <div class="featured-header">
+          <h1>Postres</h1>
+          <p>"El acompañante perfecto para tu bebida. No te vayas sin probarlos"</p>
+        </div>
 
         <div class="drinks-grid">
-
           <article class="drink-card">
             <div class="drink-card-img-wrapper">
               <img
@@ -184,77 +196,78 @@
       </section>
       <!-- Fin de postres dulces -->
 
-      <!-- Inicio de postres salados-->
-  <div class="drinks-grid">
+      <!-- Sección de comida salada -->
+      <div class="drinks-grid">
+        <article class="drink-card">
+          <div class="drink-card-img-wrapper">
+            <img
+              class="drink-card-img"
+              src="/img/Upgrade_your_lunch_game_____Try_this_Croissant_Sandwich_with_Ham___Swiss_Cheese_crispy_croissants__melty_cheese__and_a_touch_of_Dijon_mustard__Ready_in_minutes_and_totally_irresistible_-removebg-previ.png"
+              alt="Croissant de jamón y queso"
+            >
+          </div>
+          <div class="drink-card-body">
+            <h2 class="drink-card-name">Croissant de jamón y queso</h2>
+            <p class="drink-card-desc">
+              Un sándwich delicioso hecho con pan crujiente, jamón y queso.
+            </p>
+            <div class="drink-card-footer">
+              <span class="drink-price">$3.00</span>
+              <button class="btn-order">Pedir</button>
+            </div>
+          </div>
+        </article>
 
-          <article class="drink-card">
-            <div class="drink-card-img-wrapper">
-              <img
-                class="drink-card-img"
-                src="/img/Upgrade_your_lunch_game_____Try_this_Croissant_Sandwich_with_Ham___Swiss_Cheese_crispy_croissants__melty_cheese__and_a_touch_of_Dijon_mustard__Ready_in_minutes_and_totally_irresistible_-removebg-previ.png"
-                alt="Crossaint de jamón y queso"
-              >
+        <article class="drink-card">
+          <div class="drink-card-img-wrapper">
+            <img
+              class="drink-card-img"
+              src="/img/Wrap_Saludable_Fresco___-removebg-preview.png"
+              alt="Wrap de pollo"
+            >
+          </div>
+          <div class="drink-card-body">
+            <h2 class="drink-card-name">Wrap de pollo</h2>
+            <p class="drink-card-desc">
+              Una deliciosa tortilla envuelta con pollo, lechuga, tomate y queso.
+            </p>
+            <div class="drink-card-footer">
+              <span class="drink-price">$6.00</span>
+              <button class="btn-order">Pedir</button>
             </div>
-            <div class="drink-card-body">
-              <h2 class="drink-card-name">Crossaint de jamón y queso</h2>
-              <p class="drink-card-desc">
-                Un sándwich delicioso hecho con pan crujiente, jamón y queso.
-              </p>
-              <div class="drink-card-footer">
-                <span class="drink-price">$3.00</span>
-                <button class="btn-order">Pedir</button>
-              </div>
-            </div>
-          </article>
+          </div>
+        </article>
 
-          <article class="drink-card">
-            <div class="drink-card-img-wrapper">
-              <img
-                class="drink-card-img"
-                src="/img/Wrap_Saludable_Fresco___-removebg-preview.png"
-                alt="Wrap de pollo"
-              >
+        <article class="drink-card">
+          <div class="drink-card-img-wrapper">
+            <img
+              class="drink-card-img"
+              src="/img/La_receta_clásica_de_empanadas_argentinas_de_carne_-_Marco_Beteta-removebg-preview.png"
+              alt="Empanadas de carne"
+            >
+          </div>
+          <div class="drink-card-body">
+            <h2 class="drink-card-name">Empanadas de carne</h2>
+            <p class="drink-card-desc">
+              Empanadas deliciosas rellenas de carne y especias, acompañadas de salsa especial.
+            </p>
+            <div class="drink-card-footer">
+              <span class="drink-price">$8.00</span>
+              <button class="btn-order">Pedir</button>
             </div>
-            <div class="drink-card-body">
-              <h2 class="drink-card-name">Wrap de pollo</h2>
-              <p class="drink-card-desc">
-                Una deliciosa tortilla envuelta con pollo, lechuga, tomate y queso.
-              </p>
-              <div class="drink-card-footer">
-                <span class="drink-price">$6.00</span>
-                <button class="btn-order">Pedir</button>
-              </div>
-            </div>
-          </article>
-
-          <article class="drink-card">
-            <div class="drink-card-img-wrapper">
-              <img
-                class="drink-card-img"
-                src="/img/La_receta_clásica_de_empanadas_argentinas_de_carne_-_Marco_Beteta-removebg-preview.png"
-                alt="Empanadas de carne"
-              >
-            </div>
-            <div class="drink-card-body">
-              <h2 class="drink-card-name">Empanadas de carne</h2>
-              <p class="drink-card-desc">
-                Empanadas deliciosas rellenas de carne y especias, acompañadas de salsa especial.
-              </p>
-              <div class="drink-card-footer">
-                <span class="drink-price">$8.00</span>
-                <button class="btn-order">Pedir</button>
-              </div>
-            </div>
-          </article>
-        </div>
-    
-      <!-- Fin de postres salados -->
+          </div>
+        </article>
+      </div>
+      <!-- Fin de comida salada -->
     </main>
 
+    <!-- Pie de página reutilizable -->
     <site-footer></site-footer>
+
+    <!-- Script general de la página -->
     <script src="/js/main.js"></script>
 
-    <!-- Botón flotante del carrito -->
+    <!-- Botón flotante que muestra el carrito y su contador -->
     <a href="/pages/Cart.html" class="cart-fab" id="cartFab" aria-label="Ver carrito">
       <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -265,7 +278,7 @@
     </a>
 
     <script>
-      // Productos definidos en el orden del HTML
+      // Lista de productos que usa la página
       const MENU_PRODUCTS = [
         { id: 'frappuccino-caramelo', name: 'Frappuccino de caramelo', price: 8.00,
           spec: 'Batido de café con caramelo',
@@ -296,22 +309,30 @@
           img: '/img/La_receta_clásica_de_empanadas_argentinas_de_carne_-_Marco_Beteta-removebg-preview.png' }
       ];
 
+      // Devuelve el carrito almacenado en localStorage o un array vacío si no existe
       function getCart() {
         try { return JSON.parse(localStorage.getItem('cl_cart') || '[]'); } catch { return []; }
       }
+
+      // Guarda el carrito en localStorage
       function saveCart(cart) {
         localStorage.setItem('cl_cart', JSON.stringify(cart));
       }
+
+      // Actualiza el botón flotante del carrito con el número total de productos
       function updateFab() {
-        const total = getCart().reduce((s, i) => s + i.qty, 0);
+        const total = getCart().reduce((s, item) => s + item.qty, 0);
         const countEl = document.getElementById('cartCount');
         const fab = document.getElementById('cartFab');
         countEl.textContent = total;
         countEl.classList.toggle('visible', total > 0);
-        if (total > 0) { fab.classList.add('bump'); setTimeout(() => fab.classList.remove('bump'), 300); }
+        if (total > 0) {
+          fab.classList.add('bump');
+          setTimeout(() => fab.classList.remove('bump'), 300);
+        }
       }
 
-      // Asignar click a cada botón "Pedir" en orden del HTML
+      // Agrega funcionalidad al botón "Pedir" de cada producto
       document.querySelectorAll('.btn-order').forEach((btn, i) => {
         const product = MENU_PRODUCTS[i];
         if (!product) return;
@@ -319,9 +340,9 @@
           const cart = getCart();
           const existing = cart.find(item => item.id === product.id);
           if (existing) {
-            existing.qty += 1;
+            existing.qty += 1; // Si ya está en el carrito, suma uno
           } else {
-            cart.push({ ...product, qty: 1 });
+            cart.push({ ...product, qty: 1 }); // Si no está, lo agrega con cantidad 1
           }
           saveCart(cart);
           updateFab();
@@ -330,6 +351,7 @@
         });
       });
 
+      // Mostrar el número correcto en el carrito al cargar la página
       updateFab();
     </script>
 </body>

@@ -1,82 +1,137 @@
+/* ══════════════════════════════════════════════════════════
+   CART.CSS — CON COMENTARIOS PARA PRINCIPIANTES
+
+   Este archivo da estilo a la página del Carrito de Compras.
+   Tiene 3 "pantallas" (screens) que el usuario ve en orden:
+     1. Carrito → ver los productos
+     2. Envío   → llenar dirección
+     3. Pago    → elegir método de pago
+     4. Éxito   → confirmación del pedido
+   ══════════════════════════════════════════════════════════ */
+
+
+/* ── RESET UNIVERSAL ────────────────────────────────────────
+   Quita márgenes, padding y activa box-sizing en todo.
+   (Explicado en detalle en Contact.css)
+────────────────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+
+/* ── VARIABLES CSS ─────────────────────────────────────────
+   Colores específicos del carrito (tonos café/marrón/caramelo).
+   Nota: este archivo usa su PROPIA paleta de colores, diferente
+   a Contact.css. ¡Cada página puede tener la suya!
+────────────────────────────────────────────────────────────── */
 :root {
-  --cream:    #fdf8f0;
-  --beige:    #f2e8d9;
-  --sand:     #e8d5bc;
-  --brown:    #7c4f2f;
-  --espresso: #3b1f0e;
-  --caramel:  #c8873a;
-  --text:     #2c1a0e;
-  --muted:    #8c7060;
+  --cream:    #fdf8f0;   /* Fondo general crema */
+  --beige:    #f2e8d9;   /* Beige para fondos secundarios */
+  --sand:     #e8d5bc;   /* Arena */
+  --brown:    #7c4f2f;   /* Café principal (botones, acentos) */
+  --espresso: #3b1f0e;   /* Café muy oscuro (títulos) */
+  --caramel:  #c8873a;   /* Caramelo (precios, completado) */
+  --text:     #2c1a0e;   /* Color de texto principal */
+  --muted:    #8c7060;   /* Texto secundario / apagado */
   --white:    #ffffff;
-  --border:   #ddd0bc;
-  --shadow:   rgba(60,30,10,.10);
+  --border:   #ddd0bc;   /* Color de los bordes */
+  --shadow:   rgba(60,30,10,.10);  /* Sombra base */
 }
 
+
+/* ── BODY ─────────────────────────────────────────────────── */
 body {
   font-family: 'DM Sans', sans-serif;
   background: var(--cream);
   color: var(--text);
-  min-height: 100vh;
+  min-height: 100vh;  /* Ocupa al menos toda la altura de la pantalla */
 }
 
-/* ── STEPPER ── */
+
+/* ══════════════════════════════════════
+   STEPPER — Indicador de pasos
+   (Los numeritos "1 → 2 → 3" de arriba)
+   ══════════════════════════════════════ */
+
+/* Contenedor del stepper */
 .stepper {
-  display: flex;
+  display: flex;         /* Pasos en fila */
   align-items: center;
   justify-content: center;
   gap: 0;
   padding: 32px 24px 24px;
 }
+
+/* Cada paso individual */
 .step {
   display: flex;
   align-items: center;
   gap: 8px;
   font-size: 13px;
   font-weight: 500;
-  color: var(--muted);
-  cursor: default;
+  color: var(--muted);   /* Por defecto: texto apagado */
+  cursor: default;       /* Cursor normal (no manita), no es clickeable */
   transition: color .3s;
 }
-.step.active { color: var(--brown); }
-.step.done   { color: var(--caramel); }
+
+.step.active { color: var(--brown); }    /* Paso actual: color café */
+.step.done   { color: var(--caramel); } /* Paso completado: color caramelo */
+
+/* El círculo con el número del paso */
 .step-num {
   width: 30px; height: 30px;
-  border-radius: 50%;
+  border-radius: 50%;    /* Círculo perfecto */
   border: 2px solid var(--border);
   display: flex; align-items: center; justify-content: center;
   font-size: 12px; font-weight: 700;
   background: var(--cream);
   transition: all .3s;
 }
+
+/* Círculo del paso ACTIVO: fondo café, número blanco */
 .step.active .step-num {
   background: var(--brown); border-color: var(--brown); color: #fff;
 }
+
+/* Círculo del paso COMPLETADO: fondo caramelo */
 .step.done .step-num {
   background: var(--caramel); border-color: var(--caramel); color: #fff;
 }
+
+/* La línea horizontal que conecta un paso con el siguiente */
 .step-line {
   width: 60px; height: 2px;
-  background: var(--border);
+  background: var(--border);   /* Gris por defecto */
   flex-shrink: 0;
   margin: 0 4px;
   transition: background .3s;
 }
+
+/* La línea se vuelve caramelo cuando ese tramo está completado */
 .step-line.done { background: var(--caramel); }
 
-/* ── SCREENS ── */
-.screen { display: none; animation: fadeIn .35s ease; }
-.screen.active { display: block; }
-@keyframes fadeIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:none; } }
 
+/* ══════════════════════════════════════
+   PANTALLAS (screens)
+   Cada "step" del checkout es una pantalla diferente.
+   Solo la pantalla .active se muestra.
+   ══════════════════════════════════════ */
+
+.screen { display: none; animation: fadeIn .35s ease; }  /* Oculta por defecto */
+.screen.active { display: block; }                        /* Solo la activa se ve */
+
+/* Animación al mostrar una pantalla: aparece desde abajo */
+@keyframes fadeIn {
+  from { opacity:0; transform:translateY(12px); }
+  to   { opacity:1; transform:none; }
+}
+
+/* Contenedor central con ancho máximo */
 .container {
   max-width: 860px;
-  margin: 0 auto;
+  margin: 0 auto;      /* Centra horizontalmente */
   padding: 0 20px 60px;
 }
 
-/* ── SCREEN TITLE ── */
+/* Título de cada pantalla */
 .screen-title {
   font-family: 'Playfair Display', serif;
   font-size: 26px;
@@ -87,6 +142,8 @@ body {
   align-items: center;
   gap: 10px;
 }
+
+/* El número circular que acompaña al título */
 .screen-title-num {
   background: var(--caramel);
   color: #fff;
@@ -98,45 +155,68 @@ body {
   flex-shrink: 0;
 }
 
-/* ── CART ITEMS ── */
+
+/* ══════════════════════════════════════
+   ARTÍCULOS DEL CARRITO
+   ══════════════════════════════════════ */
+
+/* Caja blanca que contiene todos los productos */
 .cart-box {
   background: var(--white);
   border: 1px solid var(--border);
   border-radius: 16px;
-  overflow: hidden;
+  overflow: hidden;     /* Los bordes redondeados "cortan" el contenido */
   margin-bottom: 20px;
 }
+
+/* Cada fila de producto */
 .cart-item {
   display: grid;
+  /* 6 columnas: imagen | nombre | precio | cantidad | total | botón eliminar */
   grid-template-columns: 80px 1fr auto auto auto auto;
   align-items: center;
   gap: 16px;
   padding: 20px 24px;
-  border-bottom: 1px solid var(--beige);
+  border-bottom: 1px solid var(--beige);   /* Línea divisora entre productos */
 }
-.cart-item:last-child { border-bottom: none; }
+
+.cart-item:last-child { border-bottom: none; }  /* El último no necesita línea abajo */
+
+/* Imagen del producto */
 .cart-item-img {
   width: 72px; height: 72px;
-  object-fit: cover;
+  object-fit: cover;    /* La imagen llena el espacio sin deformarse */
   border-radius: 10px;
-  background: var(--beige);
+  background: var(--beige);  /* Si la imagen no carga, se ve beige */
 }
+
+/* Nombre del producto */
 .cart-item-name {
   font-weight: 600; font-size: 15px; color: var(--espresso);
   margin-bottom: 4px;
 }
+
+/* Detalle del producto (tamaño, sabor, etc.) */
 .cart-item-spec {
   font-size: 12px; color: var(--muted);
 }
+
+/* Etiquetas de columna ("Precio", "Cantidad", etc.) */
 .cart-col-label {
   font-size: 11px; font-weight: 600; text-transform: uppercase;
   letter-spacing: .06em; color: var(--muted); margin-bottom: 6px;
 }
+
+/* Valor del precio */
 .price-val { font-weight: 600; font-size: 15px; color: var(--text); }
+
+/* Control de cantidad (- número +) */
 .qty-ctrl {
   display: flex; align-items: center; gap: 8px;
   background: var(--beige); border-radius: 8px; padding: 4px 8px;
 }
+
+/* Botones de + y - de cantidad */
 .qty-btn {
   background: none; border: none; cursor: pointer;
   font-size: 16px; color: var(--brown); font-weight: 700;
@@ -144,9 +224,12 @@ body {
   transition: color .2s;
 }
 .qty-btn:hover { color: var(--caramel); }
+
+/* Número de cantidad */
 .qty-num { font-weight: 700; min-width: 18px; text-align: center; font-size: 14px; }
 
-/* ── TRASH / ELIMINAR BUTTON ── */
+
+/* ── BOTÓN ELIMINAR PRODUCTO ──────────────────────────────── */
 .btn-remove {
   display: flex;
   align-items: center;
@@ -161,19 +244,26 @@ body {
   font-size: 13px;
   font-weight: 500;
   transition: all .2s;
-  white-space: nowrap;
+  white-space: nowrap;  /* El texto no se parte en varias líneas */
 }
+
 .btn-remove svg {
   flex-shrink: 0;
   transition: color .2s;
 }
+
+/* Al hacer hover: se vuelve rojo */
 .btn-remove:hover {
   color: #c0392b;
   border-color: #e8b4b0;
   background: #fdf2f1;
 }
 
-/* ── TOTALS ── */
+
+/* ══════════════════════════════════════
+   TOTALES (resumen del precio)
+   ══════════════════════════════════════ */
+
 .totals {
   background: var(--white);
   border: 1px solid var(--border);
@@ -181,25 +271,33 @@ body {
   padding: 24px;
   margin-bottom: 20px;
 }
+
+/* Cada fila del resumen (Subtotal, Envío, Total...) */
 .totals-row {
-  display: flex; justify-content: space-between;
+  display: flex; justify-content: space-between;  /* Texto a la izquierda, precio a la derecha */
   align-items: center; padding: 8px 0;
   font-size: 14px; color: var(--muted);
-  border-bottom: 1px dashed var(--beige);
+  border-bottom: 1px dashed var(--beige);  /* Línea punteada entre filas */
 }
 .totals-row:last-child { border-bottom: none; }
+
+/* Fila del TOTAL FINAL: más grande y oscura */
 .totals-row.total {
   font-size: 18px; font-weight: 700;
   color: var(--espresso); padding-top: 14px;
 }
-.totals-val { color: var(--caramel); font-weight: 600; }
-.totals-row.total .totals-val { font-size: 22px; }
 
-/* ── ACTIONS ── */
+.totals-val { color: var(--caramel); font-weight: 600; }  /* Precio en caramelo */
+.totals-row.total .totals-val { font-size: 22px; }        /* Precio total más grande */
+
+
+/* ── BOTONES DE ACCIÓN (Volver / Continuar) ──────────────── */
 .actions {
   display: flex; justify-content: space-between; align-items: center;
-  gap: 12px; flex-wrap: wrap;
+  gap: 12px; flex-wrap: wrap;  /* Si no caben, los botones bajan a la siguiente línea */
 }
+
+/* Botón "Volver" */
 .btn-back {
   background: none; border: 2px solid var(--border);
   border-radius: 10px; padding: 12px 24px;
@@ -208,6 +306,8 @@ body {
   transition: all .2s;
 }
 .btn-back:hover { border-color: var(--brown); color: var(--brown); }
+
+/* Botón principal ("Continuar", "Pagar", etc.) */
 .btn-main {
   background: var(--brown); color: #fff;
   border: none; border-radius: 10px; padding: 14px 32px;
@@ -217,45 +317,72 @@ body {
 }
 .btn-main:hover { background: var(--espresso); transform: translateY(-1px); }
 
-/* ── TWO-COL LAYOUT (screens 2 & 3) ── */
+
+/* ══════════════════════════════════════
+   LAYOUT DE DOS COLUMNAS
+   (Pantallas 2 y 3: formulario + resumen lateral)
+   ══════════════════════════════════════ */
 .two-col {
-  display: grid; grid-template-columns: 1fr 340px; gap: 24px;
+  display: grid;
+  grid-template-columns: 1fr 340px;  /* Columna principal flexible + sidebar de 340px fijo */
+  gap: 24px;
   align-items: start;
 }
+
+/* En tablets/móviles: una sola columna */
 @media (max-width: 700px) { .two-col { grid-template-columns: 1fr; } }
 
-/* ── FORM ── */
+
+/* ── FORMULARIO DE DATOS (envío / pago) ──────────────────── */
 .form-card {
   background: var(--white);
   border: 1px solid var(--border);
   border-radius: 16px; padding: 28px;
 }
+
+/* Grupo de campos en dos columnas */
 .field-group {
   display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
   margin-bottom: 14px;
 }
+
+/* Grupo de campo en una sola columna (ancho completo) */
 .field-group.full { grid-template-columns: 1fr; }
+
+/* Campo individual: label + input en columna */
 .field { display: flex; flex-direction: column; gap: 6px; position: relative; }
+
+/* Etiqueta del campo */
 .field label {
   font-size: 12px; font-weight: 600;
   text-transform: uppercase; letter-spacing: .06em; color: var(--muted);
 }
+
+/* Asterisco de campo requerido */
 .field label .req { color: var(--caramel); margin-left: 2px; }
+
+/* Inputs y selects del formulario */
 .field input, .field select {
   border: 1.5px solid var(--border); border-radius: 8px;
   padding: 10px 14px; font-family: 'DM Sans', sans-serif;
   font-size: 14px; color: var(--text); background: var(--cream);
   outline: none; transition: border-color .2s, box-shadow .2s;
 }
+
+/* Focus state */
 .field input:focus, .field select:focus {
   border-color: var(--brown);
-  box-shadow: 0 0 0 3px rgba(124,79,47,.12);
+  box-shadow: 0 0 0 3px rgba(124,79,47,.12);  /* Halo café suave */
 }
+
+/* Nota informativa debajo de un campo */
 .field-note {
   font-size: 12px; color: var(--muted); margin-top: 6px;
   background: var(--beige); border-radius: 8px; padding: 10px 14px;
   line-height: 1.5;
 }
+
+/* Fila especial para mostrar el país (no editable) */
 .country-row {
   display: flex; flex-direction: column; gap: 4px;
   margin-bottom: 16px;
@@ -263,7 +390,8 @@ body {
 .country-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing:.06em; color:var(--muted); }
 .country-val { font-size: 14px; color: var(--text); font-weight: 500; }
 
-/* ── VALIDATION TOOLTIP ── */
+
+/* ── TOOLTIP DE VALIDACIÓN (mismo que en Contact.css) ──────── */
 .field-error {
   border-color: #e07032 !important;
   box-shadow: 0 0 0 3px rgba(224, 112, 50, 0.15) !important;
@@ -286,9 +414,10 @@ body {
   gap: 7px;
   white-space: nowrap;
   box-shadow: 0 3px 10px rgba(224,112,50,.18);
-  pointer-events: none;
+  pointer-events: none;  /* No interfiere con el mouse */
 }
 
+/* Flechita del tooltip */
 .validation-tooltip::before {
   content: '';
   position: absolute;
@@ -299,7 +428,7 @@ body {
   background: #fff;
   border-left: 1.5px solid #e07032;
   border-top: 1.5px solid #e07032;
-  transform: rotate(45deg);
+  transform: rotate(45deg);  /* Cuadrado rotado = triángulo */
 }
 
 .tooltip-icon {
@@ -316,60 +445,88 @@ body {
   flex-shrink: 0;
 }
 
-/* ── ORDER SUMMARY SIDEBAR ── */
+
+/* ══════════════════════════════════════
+   SIDEBAR — Resumen del pedido
+   (La columna lateral derecha)
+   ══════════════════════════════════════ */
 .summary-card {
   background: var(--white);
   border: 1px solid var(--border);
   border-radius: 16px; padding: 24px;
   position: sticky; top: 20px;
+  /* position: sticky → al hacer scroll, la tarjeta queda "pegada"
+     a 20px del tope de la pantalla */
 }
+
 .summary-title {
   font-family: 'Playfair Display', serif;
   font-size: 16px; font-weight: 700;
   color: var(--espresso); margin-bottom: 16px;
   padding-bottom: 12px; border-bottom: 1px solid var(--beige);
 }
+
+/* Cada producto en el resumen lateral */
 .summary-item {
   display: flex; align-items: center; gap: 12px;
   padding: 10px 0; border-bottom: 1px solid var(--beige);
 }
 .summary-item:last-of-type { border-bottom: none; }
+
+/* Imagen miniatura del producto */
 .summary-img {
   width: 50px; height: 50px; object-fit: cover;
   border-radius: 8px; background: var(--beige); flex-shrink: 0;
 }
-.summary-item-info { flex: 1; }
+
+.summary-item-info { flex: 1; }   /* Ocupa el espacio sobrante */
 .summary-item-name { font-size: 13px; font-weight: 600; color: var(--espresso); }
 .summary-item-spec { font-size: 11px; color: var(--muted); margin-top: 2px; }
-.summary-item-qty { font-size: 12px; color: var(--muted); margin-top: 4px; }
+.summary-item-qty  { font-size: 12px; color: var(--muted); margin-top: 4px; }
 .summary-item-price { font-weight: 700; font-size: 14px; color: var(--text); }
+
+/* Sección de totales en el sidebar */
 .summary-totals { margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--border); }
+
 .summary-row {
   display: flex; justify-content: space-between;
   font-size: 13px; color: var(--muted); margin-bottom: 6px;
 }
+
+/* Fila del total final */
 .summary-row.total {
   font-size: 16px; font-weight: 700; color: var(--espresso);
   border-top: 1px solid var(--border); padding-top: 10px; margin-top: 6px;
 }
+
 .summary-row .orange { color: var(--caramel); font-weight: 700; }
 
-/* ── PAYMENT ── */
+
+/* ══════════════════════════════════════
+   SECCIÓN DE PAGO
+   ══════════════════════════════════════ */
+
+/* Toggle "Tarjeta | Efectivo" */
 .pay-toggle {
   display: flex; border-radius: 12px;
   overflow: hidden; border: 2px solid var(--brown);
-  width: fit-content; margin-bottom: 24px;
+  width: fit-content;  /* Solo tan ancho como su contenido */
+  margin-bottom: 24px;
 }
+
+/* Cada opción del toggle */
 .pay-tab {
   padding: 10px 32px; cursor: pointer;
   font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600;
   background: none; border: none; transition: all .2s; color: var(--brown);
 }
-.pay-tab.active { background: var(--brown); color: #fff; }
+.pay-tab.active { background: var(--brown); color: #fff; }  /* Opción seleccionada */
 
+/* Panel de pago (tarjeta o efectivo) */
 .pay-panel { display: none; }
-.pay-panel.active { display: block; }
+.pay-panel.active { display: block; }  /* Solo el activo se muestra */
 
+/* Mensaje de pago en efectivo */
 .cash-msg {
   background: var(--beige); border-radius: 14px;
   padding: 32px 24px; text-align: center;
@@ -377,47 +534,71 @@ body {
 .cash-icon { font-size: 40px; margin-bottom: 12px; }
 .cash-msg p { font-size: 15px; color: var(--text); line-height: 1.6; }
 
-/* Card UI */
+
+/* ── TARJETA DE CRÉDITO (visual decorativa) ──────────────── */
 .card-layout {
   display: grid; grid-template-columns: auto 1fr; gap: 28px;
   align-items: start;
 }
+
+/* En móvil: apila la tarjeta visual y los campos */
 @media (max-width: 600px) { .card-layout { grid-template-columns: 1fr; } }
+
+/* La tarjeta visual de plástico */
 .credit-card {
   width: 200px; height: 120px;
   background: linear-gradient(135deg, #e07070 0%, #c0405a 60%, #8b2250 100%);
+  /* Degradado rojo/rosado para simular una tarjeta bancaria */
   border-radius: 14px; padding: 16px;
   position: relative; overflow: hidden;
   box-shadow: 0 8px 24px rgba(180,40,60,.35);
   flex-shrink: 0;
 }
+
+/* Círculo decorativo en la esquina superior derecha */
 .credit-card::before {
   content:''; position: absolute; top:-30px; right:-30px;
   width:110px; height:110px; border-radius:50%;
-  background: rgba(255,255,255,.1);
+  background: rgba(255,255,255,.1);  /* Blanco muy transparente */
 }
+
+/* Círculo decorativo inferior izquierdo */
 .credit-card::after {
   content:''; position: absolute; bottom:-20px; left:20px;
   width:80px; height:80px; border-radius:50%;
   background: rgba(255,255,255,.07);
 }
+
+/* Chip dorado de la tarjeta */
 .cc-chip {
   width:28px; height:20px; border-radius:4px;
-  background: linear-gradient(135deg,#f5c842,#e0a020);
+  background: linear-gradient(135deg,#f5c842,#e0a020);  /* Degradado dorado */
   margin-bottom: 14px;
 }
+
+/* Número de la tarjeta */
 .cc-number { color:#fff; font-size:11px; letter-spacing:.15em; margin-bottom:6px; opacity:.9; }
+
+/* Fila con nombre y fecha de vencimiento */
 .cc-row { display:flex; justify-content:space-between; align-items:flex-end; }
 .cc-name, .cc-exp { color:#fff; font-size:9px; opacity:.8; text-transform:uppercase; letter-spacing:.08em; }
 
+/* Campos del formulario de tarjeta */
 .card-fields { display:flex; flex-direction:column; gap:12px; }
+
+/* Fila de dos columnas: CVV y fecha */
 .cvv-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
 
-/* ── SUCCESS ── */
+
+/* ══════════════════════════════════════
+   PANTALLA DE ÉXITO (pedido confirmado)
+   ══════════════════════════════════════ */
 .success-screen {
   text-align: center; padding: 60px 20px;
   max-width: 500px; margin: 0 auto;
 }
+
+/* Ícono de palomita */
 .success-icon {
   width: 80px; height: 80px; border-radius: 50%;
   background: linear-gradient(135deg, var(--caramel), var(--brown));
@@ -425,12 +606,16 @@ body {
   font-size: 36px; margin: 0 auto 24px;
   box-shadow: 0 8px 24px rgba(200,135,58,.35);
 }
+
 .success-title {
   font-family: 'Playfair Display', serif;
   font-size: 30px; font-weight: 700; color: var(--espresso);
   margin-bottom: 12px;
 }
+
 .success-sub { font-size: 15px; color: var(--muted); line-height: 1.6; margin-bottom: 32px; }
+
+/* Caja con el número de pedido */
 .success-order {
   background: var(--white); border: 1px solid var(--border);
   border-radius: 14px; padding: 20px; margin-bottom: 32px;
@@ -439,93 +624,85 @@ body {
 .success-order-label { font-size: 11px; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); }
 .success-order-num { font-size: 22px; font-weight: 700; color: var(--caramel); margin-top: 4px; }
 
+
+/* ── CARRITO VACÍO ────────────────────────────────────────── */
 .empty-cart {
   text-align: center; padding: 60px 20px;
 }
 .empty-cart-icon { font-size: 56px; margin-bottom: 16px; }
 .empty-cart-msg { font-size: 18px; color: var(--muted); }
-/* ── Tablet (≤ 700px) — ya existe el two-col en el archivo original ── */
 
-/* ── Móvil grande (≤ 640px) ── */
+
+/* ══════════════════════════════════════════════════════════
+   RESPONSIVE — Adaptaciones para pantallas pequeñas
+   ══════════════════════════════════════════════════════════ */
+
+/* Pantallas de hasta 640px (móvil grande) */
 @media (max-width: 640px) {
-  /* Stepper */
+
+  /* Stepper más compacto */
   .stepper { padding: 20px 12px 16px; gap: 0; }
   .step     { font-size: 11px; gap: 5px; }
-  .step-label { display: none; }          /* solo el número en pantallas pequeñas */
+  .step-label { display: none; }   /* Ocultamos el texto del paso, solo queda el número */
   .step-num { width: 26px; height: 26px; font-size: 11px; }
-  .step-line { width: 28px; }
+  .step-line { width: 28px; }      /* Líneas más cortas */
 
-  /* Contenedor */
   .container { padding: 0 12px 48px; }
 
-  /* Título de sección */
   .screen-title { font-size: 20px; margin-bottom: 18px; }
   .screen-title-num { width: 28px; height: 28px; font-size: 13px; }
 
-  /* Items del carrito */
+  /* El carrito cambia de 6 columnas a 2 columnas (imagen + info)
+     y el resto fluye a nuevas filas */
   .cart-item {
-    grid-template-columns: 64px 1fr;
+    grid-template-columns: 64px 1fr;   /* Solo imagen y texto */
     grid-template-rows: auto auto auto;
     gap: 10px 12px;
     padding: 16px;
   }
-  /* Imagen ocupa su celda */
   .cart-item-img { width: 60px; height: 60px; border-radius: 8px; }
+  .cart-item-info { grid-column: 2; }   /* La info va en la segunda columna */
+  .cart-col-label { display: none; }    /* Ocultamos las etiquetas de columna */
 
-  /* Info al lado de la imagen */
-  .cart-item-info { grid-column: 2; }
-
-  /* Labels ocultos en móvil */
-  .cart-col-label { display: none; }
-
-  /* Precio, cantidad y eliminar se reparten la segunda fila */
-  .cart-item-price,
-  .cart-item-qty,
-  .cart-item-total,
-  .cart-item-remove {
-    grid-column: span 1;
-  }
-  /* Fila de controles: toda la anchura bajo imagen+info */
+  /* Los controles ocupan todo el ancho (span de todas las columnas) */
   .cart-item > *:nth-child(n+3) {
-    grid-column: 1 / -1;
+    grid-column: 1 / -1;  /* Desde la primera hasta la última columna */
   }
   .qty-ctrl { width: fit-content; }
 
-  /* Totales */
   .totals { padding: 18px 16px; }
   .totals-row { font-size: 13px; }
   .totals-row.total { font-size: 16px; }
   .totals-row.total .totals-val { font-size: 18px; }
 
-  /* Acciones */
+  /* Botones apilados en columna */
   .actions { flex-direction: column; gap: 10px; }
   .btn-back, .btn-main { width: 100%; text-align: center; }
   .btn-main { padding: 14px 24px; }
 
-  /* Formulario de envío */
   .form-card { padding: 20px 16px; }
-  .field-group { grid-template-columns: 1fr; gap: 12px; }
+  .field-group { grid-template-columns: 1fr; gap: 12px; }  /* Una columna en móvil */
 
-  /* Resumen lateral (en columna única ya baja, pero ajustamos padding) */
   .summary-card { padding: 18px 16px; }
   .summary-img  { width: 44px; height: 44px; }
 
-  /* Pago */
+  /* Toggle de pago ocupa todo el ancho */
   .pay-toggle { width: 100%; }
   .pay-tab    { flex: 1; padding: 10px 16px; font-size: 13px; }
+
+  /* En móvil, la tarjeta visual va arriba y los campos abajo */
   .card-layout { grid-template-columns: 1fr; gap: 20px; }
   .credit-card { width: 100%; max-width: 280px; }
-  .cvv-row { grid-template-columns: 1fr; }
+  .cvv-row { grid-template-columns: 1fr; }   /* CVV y fecha en columnas separadas */
 
-  /* Pantalla de éxito */
   .success-screen { padding: 40px 16px; }
   .success-title  { font-size: 24px; }
 }
 
-/* ── Móvil pequeño (≤ 380px) ── */
+/* Pantallas de hasta 380px (móvil pequeño) */
 @media (max-width: 380px) {
   .stepper { padding: 16px 8px 12px; }
-  .step-line { width: 16px; }
+  .step-line { width: 16px; }     /* Líneas aún más cortas */
   .cart-item { padding: 12px; }
   .cart-item-img { width: 52px; height: 52px; }
   .btn-remove { padding: 6px 10px; font-size: 12px; }
