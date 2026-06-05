@@ -13,7 +13,7 @@ class NavBar extends HTMLElement {
     const currentPage = this.getAttribute("page") || "";
 
     const links = [
-      { label: "Inicio",   href: "/index.html#inicio",    key: "inicio"   },
+      { label: "Inicio",   href: "/index.html",    key: "inicio"   },
       { label: "Menú",     href: "/pages/productos.html",      key: "menu"     },
       { label: "Nosotros", href: "/pages/nosotros.html",  key: "nosotros" },
       { label: "Contacto", href: "/pages/Contact.html",  key: "contacto" },
