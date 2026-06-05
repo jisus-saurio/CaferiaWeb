@@ -604,3 +604,84 @@ footer { background: var(--text-dark); padding: 60px 80px 0; color: rgba(253,248
   footer { padding: 48px 24px 0; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
 }
+/* ── Móvil grande (≤ 640px) ── */
+@media (max-width: 640px) {
+  /* Nav */
+  nav { padding: 0 16px; }
+
+  /* Hero */
+  .about-hero {
+    padding: calc(var(--nav-h) + 32px) 16px 60px;
+    min-height: 50vh;
+    align-items: flex-end;
+  }
+  .about-hero-content { max-width: 100%; }
+  .about-hero-title { font-size: clamp(2.4rem, 10vw, 3.6rem); margin-bottom: 16px; }
+  .about-hero-sub   { font-size: 0.88rem; max-width: 100%; }
+
+  /* Origen */
+  .origin { padding: 56px 16px; }
+  .origin-inner { gap: 36px; }
+  .origin-img-main { height: 300px; }
+  .origin-text-col h2 { font-size: clamp(1.7rem, 7vw, 2.2rem); margin-bottom: 18px; }
+  .origin-text-col p  { font-size: 0.88rem; }
+  .origin-quote { padding: 18px 20px; }
+  .origin-quote p { font-size: 0.95rem; }
+
+  /* Esencia (strip de stats) */
+  .essence { padding: 0 16px; }
+  .essence-inner { grid-template-columns: 1fr; }
+  .essence-item {
+    padding: 28px 0;
+    border-bottom: 1px solid rgba(253,248,240,0.06);
+  }
+
+  /* Valores */
+  .values { padding: 56px 16px; }
+  .values-header { margin-bottom: 40px; }
+  .values-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .value-card { padding: 32px 24px; }
+
+  /* Equipo */
+  .team { padding: 56px 16px; }
+  .team-header { margin-bottom: 40px; }
+  .team-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    max-width: 340px;
+    margin: 0 auto;
+  }
+  .team-img-wrap { width: 140px; height: 175px; }
+
+  /* Proceso */
+  .process { padding: 56px 16px; }
+  .process-header { margin-bottom: 40px; }
+  .process-steps {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .step-dot { width: 60px; height: 60px; font-size: 1.5rem; margin-bottom: 20px; }
+
+  /* CTA final */
+  .about-cta { padding: 64px 16px; }
+  .about-cta h2 { font-size: clamp(1.8rem, 7vw, 2.2rem); }
+  .cta-btns { flex-direction: column; align-items: center; gap: 12px; }
+  .btn-primary, .btn-ghost { width: 100%; text-align: center; }
+
+  /* Footer */
+  footer { padding: 40px 16px 0; }
+  .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+  .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+}
+
+/* ── Móvil pequeño (≤ 380px) ── */
+@media (max-width: 380px) {
+  .about-hero-title { font-size: 2.2rem; }
+  .value-card { padding: 24px 18px; }
+  .team-grid { max-width: 100%; }
+  .team-card { padding: 20px 16px 24px; }
+  .team-img-wrap { width: 120px; height: 150px; }
+}

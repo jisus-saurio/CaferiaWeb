@@ -513,3 +513,54 @@ body {
   .tabs { flex-direction: column; }
   .tab { justify-content: flex-start; }
 }
+
+/* ── Móvil grande (≤ 640px) ── */
+@media (max-width: 640px) {
+  /* Panel izquierdo de imagen */
+  .bg-panel   { min-height: 240px; max-height: 280px; }
+  .bg-content { padding: 24px 20px; }
+  .bg-headline { font-size: clamp(22px, 6.5vw, 32px); margin-bottom: 10px; }
+  .bg-sub      { font-size: 13px; margin-bottom: 20px; }
+  .bg-details  { gap: 7px; }
+  .detail-item { font-size: 12px; }
+
+  /* Panel derecho del formulario */
+  .form-panel { padding: 28px 16px 40px; }
+  .form-title  { font-size: clamp(22px, 7vw, 32px); }
+  .form-subtitle { font-size: 13px; margin-bottom: 20px; }
+
+  /* Tabs */
+  .tabs { padding: 4px; border-radius: 14px; }
+  .tab  { padding: 10px 12px; font-size: 12.5px; border-radius: 11px; }
+  .tab-icon { font-size: 14px; }
+
+  /* Campos */
+  .field input,
+  .field select,
+  .field textarea { padding: 11px 14px; font-size: 13.5px; }
+  .field label     { font-size: 11px; }
+
+  /* Contador de personas */
+  .counter-wrap  { height: 44px; }
+  .counter-btn   { width: 44px; font-size: 18px; }
+  .counter-val   { font-size: 15px; }
+
+  /* Botón de envío */
+  .btn-submit { padding: 14px 24px; font-size: 14px; margin-top: 20px; }
+
+  /* Estado de éxito */
+  .success-msg     { padding: 32px 12px; }
+  .success-icon    { font-size: 44px; }
+  .success-title   { font-size: 24px; }
+  .success-body    { font-size: 13.5px; }
+}
+
+/* ── Móvil pequeño (≤ 380px) ── */
+@media (max-width: 380px) {
+  .bg-panel    { min-height: 200px; max-height: 240px; }
+  .bg-headline { font-size: 20px; }
+  .form-panel  { padding: 22px 12px 36px; }
+  .tabs        { gap: 5px; }
+  .tab         { padding: 9px 10px; font-size: 12px; }
+  .btn-submit  { font-size: 13.5px; padding: 13px 18px; }
+}
